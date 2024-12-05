@@ -13,14 +13,14 @@ class Database{
         }
     }
 
-    private static function getInstance(){
+    public static function getInstance(){
         if(self::$_dbInstance == null){
             self::$_dbInstance = new Database();
         }
         return self::$_dbInstance;
     }
 
-    public function getConnection(){
+    public function getDbConnection(){
         return $this->_dbHandle;
     }
 

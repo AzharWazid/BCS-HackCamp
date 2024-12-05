@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BCS-HackCamp.iml" filepath="$PROJECT_DIR$/.idea/BCS-HackCamp.iml" />
+      <module fileurl="file://$USER_HOME$/Documents/Uni Work/Client Server Systems/ecoBuddy/.idea/ecoBuddy.iml" filepath="$USER_HOME$/Documents/Uni Work/Client Server Systems/ecoBuddy/.idea/ecoBuddy.iml" />
     </modules>
   </component>
 </project>
