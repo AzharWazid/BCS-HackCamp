@@ -36,10 +36,4 @@ class userDataSet
         }
     }
 
-    // Function to get all users
-    public function getAllUsers()
-    {
-        $stmt = $this->dbHandle->query("SELECT * FROM User");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 }
