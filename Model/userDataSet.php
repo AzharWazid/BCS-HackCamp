@@ -11,7 +11,7 @@ class userDataSet
         $this->dbHandle = $this->dbInstance->getDbConnection();
     }
 
-    // authenticate
+    // Authenticate
     public function authenticate($email, $password)
     {
         try
@@ -20,14 +20,21 @@ class userDataSet
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
             // Debugging output
             echo "<pre>";
             print_r($email);
             echo "</pre>";
 
-            return $user && ($password === $user['password']) ? $user : null;
+            // Verifies password
+            $userData = new userData($stmt->fetch(PDO::FETCH_ASSOC));
+            if ($password == $userData->getPassword())
+            {
+                return $userData;
+            }
+            else
+            {
+                return false;
+            }
         }
         catch (PDOException $e)
         {
