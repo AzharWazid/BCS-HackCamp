@@ -16,7 +16,7 @@ class userDataSet
     {
         try
         {
-            $stmt = $this->db->getConnection()->prepare('SELECT * FROM User WHERE username = :username');
+            $stmt = $this->dbHandle->prepare('SELECT * FROM User WHERE username = :username');
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -39,7 +39,7 @@ class userDataSet
     // Function to get all users
     public function getAllUsers()
     {
-        $stmt = $this->db->query("SELECT * FROM User");
+        $stmt = $this->dbHandle->query("SELECT * FROM User");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
