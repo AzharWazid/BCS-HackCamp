@@ -9,5 +9,4 @@ class studentInfoDataSet{
         $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getDbConnection();
     }
-
 }
