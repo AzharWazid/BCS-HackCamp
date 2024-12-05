@@ -1,0 +1,54 @@
+User
+userData class
+userDataSet class
+getUser(email, password){
+sql – get the user data by email
+check user password by hashing it
+if correct then  return data
+else return false
+}
+setUserData(name, email, password){
+convert password into hash
+insert into table
+}
+
+UserInfo
+userInfoData class
+UserInfoDataSet class
+getUserInfo(id){
+sql – get by id
+return the userinfodata
+}
+setUserInfo(id, address, phoneNumber, additionalInfo){
+insert id, rest of the data…
+}
+
+
+
+
+StudentInfo
+studentInfoData class
+studentInfoDataSet class
+getStudentInfo(id){
+sql – JOIN skills, category and level 
+}
+setStudentInfo(userInfo, skill, category, level){
+CV = file path
+Insert all
+}
+
+JobList
+jobListData class
+jobListDataSet class
+getjobList(id){
+get all data
+}
+
+LAST
+Application
+applicationData
+applicationDataSet
+getApplications
+setApplications
+
+
