@@ -1,14 +1,15 @@
 <?php
 require_once __DIR__ . "/../Model/Database.php";
 
-class UserModel
+class userDataSet
 {
-    protected $dbhandle, $dbinstance;
+    protected $dbHandle;
+    protected static $dbInstance;
 
     public function __construct()
     {
-        $this->_dbInstance = Database::getInstance();
-        $this->_dbHandle = $this->_dbInstance->getDbConnection();
+        $this->dbInstance = Database::getInstance();
+        $this->dbHandle = $this->dbInstance->getDbConnection();
     }
 
     // authenticate
@@ -16,7 +17,7 @@ class UserModel
     {
         try
         {
-            $stmt = $this->db->getConnection()->prepare('SELECT * FROM ecoUser WHERE username = :username');
+            $stmt = $this->db->getConnection()->prepare('SELECT * FROM User WHERE username = :username');
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->execute();
 
