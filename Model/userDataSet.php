@@ -3,8 +3,7 @@ require_once __DIR__ . "/../Model/Database.php";
 
 class userDataSet
 {
-    protected $dbHandle;
-    protected static $dbInstance;
+    protected $dbHandle, $dbInstance;
 
     public function __construct()
     {
