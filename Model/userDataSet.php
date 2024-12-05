@@ -12,19 +12,19 @@ class userDataSet
     }
 
     // authenticate
-    public function authenticate($username, $password)
+    public function authenticate($email, $password)
     {
         try
         {
-            $stmt = $this->dbHandle->prepare('SELECT * FROM User WHERE username = :username');
-            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt = $this->dbHandle->prepare('SELECT * FROM User WHERE email = :email');
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
 
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // Debugging output
             echo "<pre>";
-            print_r($user);
+            print_r($email);
             echo "</pre>";
 
             return $user && ($password === $user['password']) ? $user : null;
