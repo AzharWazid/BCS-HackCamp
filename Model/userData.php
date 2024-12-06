@@ -12,7 +12,7 @@ class userData
         $this->password = $dbRow['password'];
     }
 
-// Getters
+    // Getters
     public function getID()
     {
         return $this->ID;
