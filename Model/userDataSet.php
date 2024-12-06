@@ -55,4 +55,38 @@ class userDataSet
         $stmt->execute();
     }
 
+    // User Validation
+    public function validateUserData($dbHandle, $email, $password)
+    {
+        $stmt = $this->dbHandle->prepare("SELECT password FROM USERS WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result && password_verify($password, $result['password']))
+        {
+            echo "Logged in successfully!";
+            return true;
+        }
+        else
+        {
+            echo "Invalid email or password!";
+            return false;
+        }
+    }
+
+    // Example usage for user validation (Cut and paste this where it's needed)
+//    try
+//    {
+//    // Register a new user
+//        addUserData($dbHandle, 'example_name', 'example_password');
+//
+//    // Validate the user
+//        validateUserData($dbHandle, 'example_email', 'example_password');
+//    }
+//    catch (PDOException $e)
+//    {
+//        echo "Database error: " . $e->getMessage();
+//    }
+
 }
