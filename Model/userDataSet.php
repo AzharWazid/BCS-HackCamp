@@ -46,12 +46,12 @@ class userDataSet
     // Add User Data
     public function addUserData($name, $email, $password)
     {
-        $password = password_hash($password, PASSWORD_BCRYPT);
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
         $SQL="INSERT into USER (name, email, password) VALUES (:name, :email, :password)";
         $stmt = $this->dbHandle->prepare($SQL);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $passwordHash, PDO::PARAM_STR);
         $stmt->execute();
     }
 
