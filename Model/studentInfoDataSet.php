@@ -40,5 +40,15 @@ class studentInfoDataSet{
         }
     }
 
+    public function getStudentInfo($id){
+        $sql = "SELECT * FROM student_info WHERE id = :id";
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return new studentInfoData($stmt->fetch(PDO::FETCH_ASSOC));
+    }
 
+    public function addStudentInfo($cv, $skills, $category, $level){
+
+    }
 }
