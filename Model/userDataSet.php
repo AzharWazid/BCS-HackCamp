@@ -11,37 +11,37 @@ class userDataSet
         $this->dbHandle = $this->dbInstance->getDbConnection();
     }
 
-    // Authenticate
-    public function authenticate($email, $password)
-    {
-        try
-        {
-            $stmt = $this->dbHandle->prepare('SELECT * FROM User WHERE email = :email');
-            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-            $stmt->execute();
-
-            // Debugging output
-            echo "<pre>";
-            print_r($email);
-            echo "</pre>";
-
-            // Verifies password
-            $userData = new userData($stmt->fetch(PDO::FETCH_ASSOC));
-            if ($password == $userData->getPassword())
-            {
-                return $userData;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch (PDOException $e)
-        {
-            echo "Error authenticating user: " . $e->getMessage();
-            return null;
-        }
-    }
+    // Authenticate for plain text (not needed)
+//    public function authenticate($email, $password)
+//    {
+//        try
+//        {
+//            $stmt = $this->dbHandle->prepare('SELECT * FROM User WHERE email = :email');
+//            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+//            $stmt->execute();
+//
+//            // Debugging output
+//            echo "<pre>";
+//            print_r($email);
+//            echo "</pre>";
+//
+//            // Verifies password
+//            $userData = new userData($stmt->fetch(PDO::FETCH_ASSOC));
+//            if ($password == $userData->getPassword())
+//            {
+//                return $userData;
+//            }
+//            else
+//            {
+//                return false;
+//            }
+//        }
+//        catch (PDOException $e)
+//        {
+//            echo "Error authenticating user: " . $e->getMessage();
+//            return null;
+//        }
+//    }
 
     // Add User Data
     public function addUserData($name, $email, $password)
@@ -56,9 +56,9 @@ class userDataSet
     }
 
     // User Validation
-    public function validateUserData($dbHandle, $email, $password)
+    public function validateUserData($email, $password)
     {
-        $stmt = $this->dbHandle->prepare("SELECT password FROM USERS WHERE email = :email");
+        $stmt = $this->dbHandle->prepare("SELECT * FROM USERS WHERE email = :email");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -66,7 +66,7 @@ class userDataSet
         if ($result && password_verify($password, $result['password']))
         {
             echo "Logged in successfully!";
-            return true;
+            return new userData($result);
         }
         else
         {
