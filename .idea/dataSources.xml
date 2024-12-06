@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="bcs" uuid="06fb1e6c-3248-485e-bae5-d10535b49c77">
+    <data-source source="LOCAL" name="bcs" uuid="e85e4948-a59e-47c0-88fe-9ae0b5f15225">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/bcs.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\hanna\Desktop\yr 2 computer science\Hackcamp work\BCS-HackCamp\bcs.sqlite</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>
