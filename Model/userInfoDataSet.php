@@ -11,7 +11,7 @@ class userInfoDataSet{
     }
 
     public function getUserInfo($id){
-        $SQL = "SELECT * FROM UserInfo WHERE id = :id";
+        $SQL = "SELECT * FROM UserInfo WHERE userID = :id";
         $smt = $this->dbHandle->query($SQL);
         $smt->bindParam(":id", $id, PDO::PARAM_INT);
         $smt->execute();
@@ -25,10 +25,10 @@ class userInfoDataSet{
         return null;
     }
 
-    public function setStudentInfo($id, $address, $phoneNumber, $CV, $userID, $additionallInfo)
+    public function setStudentInfo($address, $phoneNumber, $CV, $userID, $additionallInfo)
     {
-        $SQL = "INSERT INTO UserInfo (id, address, phoneNumber, CV, userID, additionallInfo)
-        VALUES (:id, :address, :phoneNumber, :CV, :userID, :additionallInfo)
+        $SQL = "INSERT INTO UserInfo (address, phoneNumber, CV, userID, additionallInfo)
+        VALUES (:address, :phoneNumber, :CV, :userID, :additionallInfo)
         ON DUPLICATE KEY UPDATE
         address = :address
         phoneNumber = :phoneNumber
