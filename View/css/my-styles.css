@@ -1,0 +1,6 @@
+.yellow-card {
+    background-color: #FFFF99; /* Light yellow */
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+}
