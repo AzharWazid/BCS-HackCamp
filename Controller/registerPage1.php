@@ -1,3 +1,3 @@
 <?php
-
-require_once("../View/registerPage1.phtml");
+// Include the login view (HTML form)
+require("../View/registerPage1.phtml");
