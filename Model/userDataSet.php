@@ -11,23 +11,30 @@ class userDataSet
         $this->dbHandle = $this->dbInstance->getDbConnection();
     }
 
-    // authenticate
-    public function authenticate($username, $password)
+    // Authenticate
+    public function authenticate($email, $password)
     {
         try
         {
-            $stmt = $this->dbHandle->prepare('SELECT * FROM User WHERE username = :username');
-            $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+            $stmt = $this->dbHandle->prepare('SELECT * FROM User WHERE email = :email');
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
-
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             // Debugging output
             echo "<pre>";
-            print_r($user);
+            print_r($email);
             echo "</pre>";
 
-            return $user && ($password === $user['password']) ? $user : null;
+            // Verifies password
+            $userData = new userData($stmt->fetch(PDO::FETCH_ASSOC));
+            if ($password == $userData->getPassword())
+            {
+                return $userData;
+            }
+            else
+            {
+                return false;
+            }
         }
         catch (PDOException $e)
         {
@@ -36,10 +43,50 @@ class userDataSet
         }
     }
 
-    // Function to get all users
-    public function getAllUsers()
+    // Add User Data
+    public function addUserData($name, $email, $password)
     {
-        $stmt = $this->dbHandle->query("SELECT * FROM User");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+        $SQL="INSERT into USER (name, email, password) VALUES (:name, :email, :password)";
+        $stmt = $this->dbHandle->prepare($SQL);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $passwordHash, PDO::PARAM_STR);
+        $stmt->execute();
     }
+
+    // User Validation
+    public function validateUserData($dbHandle, $email, $password)
+    {
+        $stmt = $this->dbHandle->prepare("SELECT password FROM USERS WHERE email = :email");
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result && password_verify($password, $result['password']))
+        {
+            echo "Logged in successfully!";
+            return true;
+        }
+        else
+        {
+            echo "Invalid email or password!";
+            return false;
+        }
+    }
+
+    // Example usage for user validation (Cut and paste this where it's needed)
+//    try
+//    {
+//    // Register a new user
+//        addUserData($dbHandle, 'example_name', 'example_password');
+//
+//    // Validate the user
+//        validateUserData($dbHandle, 'example_email', 'example_password');
+//    }
+//    catch (PDOException $e)
+//    {
+//        echo "Database error: " . $e->getMessage();
+//    }
+
 }
