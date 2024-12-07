@@ -4,3 +4,8 @@
     text-align: center;
     padding: 20px;
 }
+a.errorMessage{
+    color: red;
+    font-size: 14px;
+    text-decoration: none;
+}

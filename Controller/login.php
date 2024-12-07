@@ -2,6 +2,7 @@
 require_once ("../Model/userDataSet.php");
 
 $view = new stdClass();
+$view->errorMessage = "";
 $userDataSet = new userDataSet();
 
 // Check if the form is submitted
@@ -14,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validates the user inputs
     $view->userDataSet = $userDataSet->validateUserData($email, $password);
     if (!$view->userDataSet) {
-        echo "Invalid email or password";
+        $view->errorMessage = "Invalid email or password";
     }
 
     else{
