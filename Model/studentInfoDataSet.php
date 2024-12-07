@@ -13,13 +13,15 @@ class studentInfoDataSet{
     public function storeStudentCV($userId, $cv){
         //checks for errors
         if($cv['error'] != UPLOAD_ERR_OK){
-            return 'upload error';
+            echo 'upload error';
+            return false;
         }
 
         //ensures the file type is pdf
         $validFileExtensions = ['application/pdf'];
         if(!in_array($cv["type"], $validFileExtensions)){
-            return 'type error';
+            echo 'type error';
+            return false;
         }
 
         //path to user folder
@@ -36,7 +38,8 @@ class studentInfoDataSet{
             return $filePath;
         }
         else{
-            return 'dir upload error';
+            echo 'dir upload error';
+            return false;
         }
     }
 
@@ -48,7 +51,21 @@ class studentInfoDataSet{
         return new studentInfoData($stmt->fetch(PDO::FETCH_ASSOC));
     }
 
-    public function addStudentInfo($cv, $skills, $category, $level){
+    public function addStudentInfo($userInfoId, $cv, $skills, $category, $level){
+        if($cv == null || $cv == ''){
+            $cvPath = null;
+        }
+        elseif(!$this->storeStudentCV($userInfoId, $cv)){
+            $cvPath = $this->storeStudentCV($userInfoId, $cv);
+        }
 
+        $sql = "INSERT INTO StudentInfo (userInfo, CV, skills, category, level) VALUES (:userInfoId, :cv, :skills, :category, :level)";
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(':userInfoId', $userInfoId);
+        $stmt->bindParam(':cv', $cvPath);
+        $stmt->bindParam(':skills', $skills);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':level', $level);
+        $stmt->execute();
     }
 }
