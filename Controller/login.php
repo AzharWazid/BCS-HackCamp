@@ -1,6 +1,8 @@
 <?php
-// Include the login view (HTML form)
-require("../View/login.phtml");
+require_once ("../Model/userDataSet.php");
+
+$view = new stdClass();
+$userDataSet = new userDataSet();
 
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -9,17 +11,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = isset($_POST['password']) ? $_POST['password'] : '';
     $remember_me = isset($_POST['remember_me']);
 
-    // Example validation (you can replace this with your actual logic)
-    if (!empty($email) && !empty($password)) {
-        // Placeholder: Check credentials
-        if ($email === 'test@example.com' && $password === 'password123') {
-            echo "Login successful!";
-        } else {
-            echo "Invalid credentials!";
-        }
-    } else {
-        echo "Please fill in all fields!";
+    // Validates the user inputs
+    $view->userDataSet = $userDataSet->validateUserData($email, $password);
+    if (!$view->userDataSet) {
+        echo "Invalid email or password";
     }
+
+    else{
+        session_start();
+
+        $_SESSION["id"] = $view->userDataSet->getID();
+        $_SESSION["userType"] = $view->userDataSet->getUserTypes();
+        $_SESSION["name"] = $view->userDataSet->getName();
+        $_SESSION["email"] = $view->userDataSet->getEmail();
+
+        header("Location:../index.php");
+    }
+
 }
 
-?>
+// Include the login view (HTML form)
+require("../View/login.phtml");

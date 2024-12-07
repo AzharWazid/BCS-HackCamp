@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../Model/Database.php";
-
+require_once __DIR__ . "/../Model/userData.php";
 class userDataSet
 {
     protected $dbHandle, $dbInstance;
@@ -47,7 +47,7 @@ class userDataSet
     public function addUserData($name, $email, $password)
     {
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        $SQL="INSERT into USER (name, email, password) VALUES (:name, :email, :password)";
+        $SQL="INSERT into User (name, email, password) VALUES (:name, :email, :password)";
         $stmt = $this->dbHandle->prepare($SQL);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -58,19 +58,19 @@ class userDataSet
     // User Validation
     public function validateUserData($email, $password)
     {
-        $stmt = $this->dbHandle->prepare("SELECT * FROM USERS WHERE email = :email");
+        $stmt = $this->dbHandle->prepare("SELECT * FROM User WHERE email = :email");
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($result && password_verify($password, $result['password']))
         {
-            echo "Logged in successfully!";
+            //echo "Logged in successfully!";
             return new userData($result);
         }
         else
         {
-            echo "Invalid email or password!";
+            //echo "Invalid email or password!";
             return false;
         }
     }
