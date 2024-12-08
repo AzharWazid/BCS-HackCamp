@@ -49,9 +49,9 @@ class userDataSet
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
         $SQL="INSERT into User (name, email, password) VALUES (:name, :email, :password)";
         $stmt = $this->dbHandle->prepare($SQL);
-        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $passwordHash, PDO::PARAM_STR);
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $passwordHash);
         $stmt->execute();
     }
 
@@ -59,7 +59,7 @@ class userDataSet
     public function validateUserData($email, $password)
     {
         $stmt = $this->dbHandle->prepare("SELECT * FROM User WHERE email = :email");
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
