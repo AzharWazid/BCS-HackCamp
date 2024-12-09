@@ -1,0 +1,167 @@
+<?php require_once('View/template/header.phtml'); ?>
+
+    <div class="container text-center mt-5">
+        <h1>Registration Successful</h1>
+        <p class="lead">Thank you for registering!</p>
+
+        <?php
+        // Check if form data from registerPage1.phtml was submitted
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Capture form data
+            $firstName = htmlspecialchars($_POST['first_name']);
+            $lastName = htmlspecialchars($_POST['last_name']);
+            $email = htmlspecialchars($_POST['email']);
+            $dob = htmlspecialchars($_POST['dob']);
+            $phone = htmlspecialchars($_POST['phone']);
+            $password = htmlspecialchars($_POST['password']);
+            $userType = htmlspecialchars($_POST['user_type']);
+            ?>
+
+            <div class="alert alert-success" role="alert">
+                <strong>Details Submitted:</strong><br>
+                Name: <?= $firstName . ' ' . $lastName; ?><br>
+                Email: <?= $email; ?><br>
+                Date of Birth: <?= $dob; ?><br>
+                Phone Number: <?= $phone; ?><br>
+                User Type: <?= ucfirst($userType); ?>
+            </div>
+
+            <form class="d-grid gap-2 col-6 mx-auto mt-4" action="registerPage2.phtml" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="cvUpload" class="form-label">Upload CV</label>
+                    <input class="form-control" type="file" id="cvUpload" name="cv_file" accept=".pdf,.doc,.docx" required>
+                </div>
+                <button class="btn btn-primary w-100" type="submit" name="upload_cv">Upload CV</button>
+            </form>
+
+            <?php
+            // Handle CV Upload
+            if (isset($_POST['upload_cv']) && isset($_FILES['cv_file'])) {
+                $uploadDir = 'uploads/'; // Directory to save uploaded CVs
+                $cvFile = $uploadDir . basename($_FILES['cv_file']['name']);
+
+                // Validate and move uploaded file
+                if (move_uploaded_file($_FILES['cv_file']['tmp_name'], $cvFile)) {
+                    echo "<div class='alert alert-success mt-3' role='alert'>CV uploaded successfully!</div>";
+                    $_SESSION['uploaded_cv'] = $cvFile; // Store the file path in the session
+                } else {
+                    echo "<div class='alert alert-danger mt-3' role='alert'>Failed to upload CV. Please try again.</div>";
+                }
+            }
+            ?>
+
+            <?php if (isset($_SESSION['uploaded_cv'])): ?>
+                <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                    <a class="btn btn-secondary w-100" href="<?= $_SESSION['uploaded_cv']; ?>" target="_blank">View CV</a>
+                </div>
+            <?php endif; ?>
+
+        <?php } else { ?>
+            <div class="alert alert-danger" role="alert">
+                No data received! Please register again.
+            </div>
+        <?php } ?>
+    </div>
+
+
+    <div class="container mt-5">
+        <h1 class="text-center">Additional Information</h1>
+        <p class="lead text-center">Please provide more details to help us find the best placements for you.</p>
+
+        <form action="registerPage2.phtml" method="POST" enctype="multipart/form-data">
+            <!-- Skills Section -->
+            <div class="mt-4">
+                <h3>Skills</h3>
+                <p>Select the skills you have:</p>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill1" name="skills[]" value="JavaScript">
+                    <label class="form-check-label" for="skill1">JavaScript</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill2" name="skills[]" value="Python">
+                    <label class="form-check-label" for="skill2">Python</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill3" name="skills[]" value="HTML/CSS">
+                    <label class="form-check-label" for="skill3">HTML/CSS</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill4" name="skills[]" value="Java">
+                    <label class="form-check-label" for="skill4">Java</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill5" name="skills[]" value="C++">
+                    <label class="form-check-label" for="skill5">C++</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill6" name="skills[]" value="SQL">
+                    <label class="form-check-label" for="skill6">SQL</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill7" name="skills[]" value="Problem Solving">
+                    <label class="form-check-label" for="skill7">Problem Solving</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill8" name="skills[]" value="Project Management">
+                    <label class="form-check-label" for="skill8">Project Management</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill9" name="skills[]" value="Communication">
+                    <label class="form-check-label" for="skill9">Communication</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="skill10" name="skills[]" value="Teamwork">
+                    <label class="form-check-label" for="skill10">Teamwork</label>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="mt-4">
+                <h3>Filters</h3>
+                <div class="row g-3">
+                    <!-- Location Filter -->
+                    <div class="col-md-4">
+                        <label for="location" class="form-label">Location</label>
+                        <select id="location" name="location" class="form-select">
+                            <option value="" selected>Choose...</option>
+                            <option value="Remote">Remote</option>
+                            <option value="London">London</option>
+                            <option value="Manchester">Manchester</option>
+                            <option value="Birmingham">Birmingham</option>
+                            <option value="Edinburgh">Edinburgh</option>
+                        </select>
+                    </div>
+                    <!-- Placement Duration Filter -->
+                    <div class="col-md-4">
+                        <label for="duration" class="form-label">Placement Duration</label>
+                        <select id="duration" name="duration" class="form-select">
+                            <option value="" selected>Choose...</option>
+                            <option value="1 month">1 month</option>
+                            <option value="3 months">3 months</option>
+                            <option value="6 months">6 months</option>
+                            <option value="12 months">12 months</option>
+                        </select>
+                    </div>
+                    <!-- Job Field Filter -->
+                    <div class="col-md-4">
+                        <label for="jobField" class="form-label">Job Field</label>
+                        <select id="jobField" name="jobField" class="form-select">
+                            <option value="" selected>Choose...</option>
+                            <option value="Software Development">Software Development</option>
+                            <option value="Data Science">Data Science</option>
+                            <option value="Web Development">Web Development</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                            <option value="Project Management">Project Management</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                <button class="btn btn-success" type="submit">Submit Details</button>
+            </div>
+        </form>
+    </div>
+
+<?php require_once("template/footer.phtml"); ?>
