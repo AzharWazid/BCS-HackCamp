@@ -12,6 +12,8 @@
         <a ><?php if($_SESSION['userType'] == 2){echo "Student";} elseif($_SESSION['userType'] == 3){echo "Employer";} else{echo "Admin";} ?> Account</a>
         <h5 class="mt-2">Email</h5>
         <p class="border p-2"><?php echo $_SESSION['email'];?></p>
+        <h5 class="mt-2">Address</h5>
+        <p class="border p-2"><?php echo $view->userInfoDataSet;?></p>
     </div>
 </div>
 </body>
