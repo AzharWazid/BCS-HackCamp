@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     var_dump($dob);
     var_dump($_POST);
 
-    // Process the data (e.g., validation, saving to the database)
+    // Process the data (e.g., validation, saving to the database
     // Example:
     // echo "User Registered: $firstName $lastName with email $email";
 }
