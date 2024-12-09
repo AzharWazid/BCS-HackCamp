@@ -1,6 +1,10 @@
 <?php
 
 require_once("../Model/userInfoDataSet.php");
+require_once("../Model/studentInfoDataSet.php");
+
+session_start();
+
 $view = new stdClass();
 $UserInfoDataSet = new UserInfoDataSet();
 $view->userInfoDataSet=$UserInfoDataSet->getUserInfo($_SESSION["id"]);

@@ -1,6 +1,6 @@
 <?php
-require_once ('Model/Database.php');
-require_once ('Model/studentInfoDataSet.php');
+require_once ('../Model/Database.php');
+require_once ('../Model/studentInfoDataSet.php');
 
 class studentInfoDataSet{
     protected $dbHandle, $dbInstance;
