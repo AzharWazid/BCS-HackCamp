@@ -1,6 +1,6 @@
 <?php
-require_once ("Model/Database.php");
-require_once ("Model/jobListData.php");
+require_once ("../Model/Database.php");
+require_once ("../Model/jobListData.php");
 
 class jobListDataSet {
 

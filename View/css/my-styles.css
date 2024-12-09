@@ -9,3 +9,11 @@ a.errorMessage{
     font-size: 14px;
     text-decoration: none;
 }
+
+.yellow-card-job-list {
+    background-color: #FFFF99; /* Light yellow */
+    border: 1px solid black !important; /* Ensure a black border on all sides */
+}
+.list-group-item {
+    margin-bottom: 15px; /* Add spacing between items */
+}
