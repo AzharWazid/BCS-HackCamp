@@ -12,6 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $userTypes = isset($_POST['user_type']) ? $_POST['user_type'] : [];
 
+    var_dump($dob);
+    var_dump($_POST);
+
     // Process the data (e.g., validation, saving to the database)
     // Example:
     // echo "User Registered: $firstName $lastName with email $email";

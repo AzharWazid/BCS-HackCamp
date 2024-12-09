@@ -1,12 +1,13 @@
 <?php
 
 class userInfoData{
-    protected $_id, $_address, $_phoneNumber, $_userID, $_additionalInfo;
+    protected $_id, $_address, $_phoneNumber, $_userID, $_additionalInfo, $_dobYMD;
 
     public function __construct($dbRow){
         $this->_id = $dbRow['id'];
         $this->_address = $dbRow['address'];
         $this->_phoneNumber = $dbRow['phoneNumber'];
+        $this->_dobYMD = $dbRow['dobYMD'];
         $this->_userID = $dbRow['userID'];
         $this->_additionalInfo = $dbRow['additionalInfo'];
     }
@@ -18,7 +19,10 @@ class userInfoData{
     return $this->_address;
     }
     public function getPhoneNumber(){
-    return $this->_phoneNumber;
+        return $this->_phoneNumber;
+    }
+    public function getDobYMD(){
+        return $this->_dobYMD;
     }
     public function getUserID(){
     return $this->_userID;

@@ -12,6 +12,18 @@
         <a ><?php if($_SESSION['userType'] == 2){echo "Student";} elseif($_SESSION['userType'] == 3){echo "Employer";} else{echo "Admin";} ?> Account</a>
         <h5 class="mt-2">Email</h5>
         <p class="border p-2"><?php echo $_SESSION['email'];?></p>
+        <?php if(!empty($view->userInfoDataSet)): ?>
+            <h5 class="mt-2">Address</h5>
+            <p class="border p-2"><?php echo $view->userInfoDataSet->getAddress();?></p>
+            <h5 class="mt-2">Phone Number</h5>
+            <p class="border p-2"><?php echo $view->userInfoDataSet->getPhoneNumber();?></p>
+            <h5 class="mt-2">Date Of Birth (YY-MM-DD)</h5>
+            <p class="border p-2"><?php echo $view->userInfoDataSet->getDobYMD();?></p>
+        <?php endif; ?>
+        <?php if(!empty($view->studentInfoDataSet)): ?>
+            <h5 class="mt-2">Address</h5>
+            <p class="border p-2"><?php echo $view->userInfoDataSet->getAddress();?></p>
+        <?php endif; ?>
     </div>
 </div>
 </body>
