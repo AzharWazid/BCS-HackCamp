@@ -54,6 +54,8 @@ try {
     ]);
 
     $dbHandle->commit();
+
+    header('Location: registerPage2.php');
     echo "Registration successful!";
 
 } catch (PDOException $e) {
