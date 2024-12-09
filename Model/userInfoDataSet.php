@@ -1,6 +1,6 @@
 <?php
-require_once ('Model/Database.php');
-require_once ('Model/userInfoData.php');
+require_once __DIR__ . "/../Model/Database.php";
+require_once ('../Model/userInfoData.php');
 
 class userInfoDataSet{
     protected $dbHandle, $dbInstance;
