@@ -13,7 +13,6 @@ if ($_SESSION["userType"] == "2")
 {
     $studentInfoDataSet = new StudentInfoDataSet();
     $view->studentInfoDataSet=$studentInfoDataSet->getStudentInfo($view->userInfoDataSet->getID());
-
 }
 
 require_once ("../View/account.phtml");
