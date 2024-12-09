@@ -1,6 +1,8 @@
 <?php
 
-require_once("../Model/userInfoDataSet.php");
+require_once __DIR__ . '/../Model/userInfoDataSet.php';
+
+
 $view = new stdClass();
 $UserInfoDataSet = new UserInfoDataSet();
 $view->userInfoDataSet=$UserInfoDataSet->getUserInfo($_SESSION["id"]);
