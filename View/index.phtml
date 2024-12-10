@@ -1,55 +1,59 @@
 <?php require_once('View/template/header.phtml'); ?>
+<!DOCTYPE html>
+<html lang="en">
 <body>
-<div class="container mt-5">
-    <div class="row justify-content-center" style="margin-left: 100px;"> <!-- Two cards -->
-        <!-- First Card -->
+<header class="bg-primary text-white py-3">
+    <div class="container">
+        <h1 class="text-center">BCS - Building Trust in Technology</h1>
+    </div>
+</header>
+
+<main class="container my-4">
+    <section class="text-center">
+        <h2 class="mb-3">Why Trust Us?</h2>
+        <p class="lead">
+            At BCS, we strive to ensure ethical and professional standards in technology, inspiring confidence and trust among our members and the community.
+        </p>
+    </section>
+
+    <section class="row mt-5">
         <div class="col-md-4">
-            <div class="card text-center" style="width: 18rem;">
+            <div class="card shadow-sm h-100">
+                <img src="/images/students.png" class="card-img-top" width="250" height="250" alt="Students">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Students</h5>
+                    <p class="card-text">Students often achieve higher grades after completing a placement due to improved practical understanding, enhanced time management, and increased motivation from real-world experience.</p>
                 </div>
             </div>
         </div>
-        <!-- Second Card -->
         <div class="col-md-4">
-            <div class="card text-center" style="width: 18rem;">
+            <div class="card shadow-sm h-100">
+                <img src="/images/Employers.png" class="card-img-top" width="250" height="250" alt="Employers">
                 <div class="card-body">
-                    <h5 class="card-title">Another Card</h5>
-                    <h6 class="card-subtitle mb-2 text-body-secondary">Another Subtitle</h6>
-                    <p class="card-text">Some more quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Employers</h5>
+                    <p class="card-text">Employers provide valuable opportunities for skill development and real-world experience through internships and placements, shaping careers and industries alike.</p>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Third Card -->
-    <div class="row mt-4">
-        <div class="col-11 mx-auto" style="margin-left: 50px;"> <!-- Shifted to the right -->
-            <div class="card yellow-card p-4">
-                <h5 class="card-title">Welcome to the BCS Placement Portal</h5>
-                <p class="card-text">
-                    Welcome to the BCS Placement Portal, an innovative web application created to bridge the gap between aspiring computer science students and top employers in the tech industry. This platform provides a seamless and efficient way for students to discover year-long industrial placements that match their skills, interests, and career goals.
-                </p>
-                <p class="card-text">
-                    Designed with both students and employers in mind, the portal offers a wealth of features:
-                <ul>
-                    <li>Students can upload their CVs, specify their skills, and explore relevant placement opportunities tailored to their strengths.</li>
-                    <li>Employers can showcase their placement opportunities with detailed descriptions, skill requirements, and benefits.</li>
-                    <li>A sophisticated matching system ensures that students and employers are paired based on shared goals, ensuring optimal alignment.</li>
-                </ul>
-                <p class="card-text">
-                    Beyond placements, this platform promotes the importance of work experience in enhancing employability and academic success. Research has shown that students who engage in industrial placements not only gain valuable insights into the professional world but also perform better in their final-year studies. Employers, on the other hand, benefit from nurturing early-stage talent while fulfilling organizational goals.
-                </p>
-                <p class="card-text">
-                    Join us in fostering connections, building careers, and advancing the tech industry through the BCS Placement Portal—a step toward empowering the next generation of IT professionals.
-                </p>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <img src="/images/graduates.png" class="card-img-top" width="250" height="250" alt="graduates">
+                <div class="card-body">
+                    <h5 class="card-title">Graduates</h5>
+                    <p class="card-text">Strong performance during a placement often leads to job offers, as employers value skilled graduates familiar with their business after graduation.</p>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
+    <section class="mt-5">
+        <h2 class="text-center mb-4">Get Involved</h2>
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-primary btn-lg" onclick="location.href='../Controller/placements.php';">Apply for placements now</a>
+        </div>
+    </section>
+</main>
 
-</body>
+</html>
 
 <?php require_once('View/template/footer.phtml'); ?>
