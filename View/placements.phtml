@@ -1,49 +1,96 @@
-<?php require_once ("template/header.phtml"); ?>
+<?php require_once("template/header.phtml"); ?>
 
-<body>
-<div class="container mt-5">
-    <h2 class="mb-4">Job Listings</h2>
-    <ul class="list-group">
-        <!-- Job 1 -->
-        <li class="list-group-item yellow-card-job-list mb-3">
-            <h5 class="mb-2">Assurance Summer Internships - July 2025 Intake</h5>
-            <p class="text-muted mb-1">Finance, FinTech, Business, Accountancy, Data</p>
-            <p class="mb-1"><strong>Salary:</strong> Competitive</p>
-            <p class="mb-1"><strong>Location:</strong> Various locations</p>
-            <p class="mb-1"><strong>Degree required:</strong> All grades</p>
-            <p class="mb-1"><strong>Duration:</strong> 4 weeks</p>
-            <p class="mb-1"><strong>Starting:</strong> July 2025</p>
-            <p class="mb-1"><strong>Deadline:</strong> Ongoing</p>
-            <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
-        </li>
+    <body>
+    <div class="container mt-5">
+        <h2 class="mb-4">Job Listings</h2>
+        <div class="row">
+            <!-- Filters Column -->
+            <div class="col-md-3">
+                <h4>Filters</h4>
+                <!-- Filters Output -->
+                <div id="filters-output">
+                    <h5>Location</h5>
+                    <div id="location-filter" class="mb-3"></div>
+                    <h5>Length</h5>
+                    <div id="length-filter" class="mb-3"></div>
+                    <h5>Field</h5>
+                    <div id="field-filter" class="mb-3"></div>
+                </div>
+            </div>
 
-        <!-- Job 2 -->
-        <li class="list-group-item yellow-card-job-list mb-3">
-            <h5 class="mb-2">Technology Internship - Summer 2025</h5>
-            <p class="text-muted mb-1">Tech, Software Development, AI, Machine Learning</p>
-            <p class="mb-1"><strong>Salary:</strong> Competitive</p>
-            <p class="mb-1"><strong>Location:</strong> Remote</p>
-            <p class="mb-1"><strong>Degree required:</strong> Computer Science or related</p>
-            <p class="mb-1"><strong>Duration:</strong> 8 weeks</p>
-            <p class="mb-1"><strong>Starting:</strong> June 2025</p>
-            <p class="mb-1"><strong>Deadline:</strong> March 2025</p>
-            <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
-        </li>
+            <!-- Job Listings Column -->
+            <div class="col-md-9">
+                <ul class="list-group">
+                    <!-- Job 1 -->
+                    <li class="list-group-item yellow-card-job-list p-3 mb-3" style="border-left: 5px solid #ffc107; border-radius: 5px;">
+                        <h5 class="mb-2">Assurance Summer Internships - July 2025 Intake</h5>
+                        <p class="text-muted mb-1">Finance, FinTech, Business, Accountancy, Data</p>
+                        <p class="mb-1"><strong>Salary:</strong> Competitive</p>
+                        <p class="mb-1"><strong>Location:</strong> Various locations</p>
+                        <p class="mb-1"><strong>Duration:</strong> 4 weeks</p>
+                        <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
+                    </li>
 
-        <!-- Job 3 -->
-        <li class="list-group-item yellow-card-job-list mb-3">
-            <h5 class="mb-2">Marketing Summer Placement - 2025</h5>
-            <p class="text-muted mb-1">Marketing, PR, Communications, Digital Media</p>
-            <p class="mb-1"><strong>Salary:</strong> Competitive</p>
-            <p class="mb-1"><strong>Location:</strong> London</p>
-            <p class="mb-1"><strong>Degree required:</strong> Any</p>
-            <p class="mb-1"><strong>Duration:</strong> 1 Year</p>
-            <p class="mb-1"><strong>Starting:</strong> July 2025</p>
-            <p class="mb-1"><strong>Deadline:</strong> April 2025</p>
-            <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
-        </li>
-    </ul>
-</div>
+                    <!-- Job 2 -->
+                    <li class="list-group-item yellow-card-job-list p-3 mb-3" style="border-left: 5px solid #ffc107; border-radius: 5px;">
+                        <h5 class="mb-2">Technology Internship - Summer 2025</h5>
+                        <p class="text-muted mb-1">Tech, Software Development, AI, Machine Learning</p>
+                        <p class="mb-1"><strong>Salary:</strong> Competitive</p>
+                        <p class="mb-1"><strong>Location:</strong> Remote</p>
+                        <p class="mb-1"><strong>Duration:</strong> 8 weeks</p>
+                        <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
+                    </li>
 
-</body>
-<?php require_once ("template/footer.phtml"); ?>
+                    <!-- Job 3 -->
+                    <li class="list-group-item yellow-card-job-list p-3 mb-3" style="border-left: 5px solid #ffc107; border-radius: 5px;">
+                        <h5 class="mb-2">Marketing Summer Placement - 2025</h5>
+                        <p class="text-muted mb-1">Marketing, PR, Communications, Digital Media</p>
+                        <p class="mb-1"><strong>Salary:</strong> Competitive</p>
+                        <p class="mb-1"><strong>Location:</strong> London</p>
+                        <p class="mb-1"><strong>Duration:</strong> 1 Year</p>
+                        <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const filters = {
+            location: ["Manchester", "London", "Edinburgh", "Birmingham", "Liverpool"],
+            length: ["6 weeks", "3 months", "6 months", "1 year"],
+            field: ["Computer Science", "Business"]
+        };
+
+        const populateFilters = () => {
+            for (const [key, options] of Object.entries(filters)) {
+                const filterContainer = document.getElementById(`${key}-filter`);
+                filterContainer.innerHTML = ""; // Clear previous content
+
+                options.forEach(option => {
+                    const formCheck = document.createElement("div");
+                    formCheck.classList.add("form-check", "mb-2");
+
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    checkbox.classList.add("form-check-input");
+                    checkbox.id = `${key}-${option.toLowerCase().replace(/\s+/g, "-")}`;
+                    checkbox.value = option;
+
+                    const label = document.createElement("label");
+                    label.classList.add("form-check-label");
+                    label.htmlFor = checkbox.id;
+                    label.textContent = option;
+
+                    formCheck.appendChild(checkbox);
+                    formCheck.appendChild(label);
+                    filterContainer.appendChild(formCheck);
+                });
+            }
+        };
+
+        // Populate all filters on page load
+        document.addEventListener("DOMContentLoaded", populateFilters);
+    </script>
+
+<?php require_once("template/footer.phtml"); ?>
