@@ -1,26 +1,31 @@
 <?php
 
-require_once("../Model/jobListDataSet.php");
+//require_once("../Model/jobListDataSet.php");
+//
+//session_start();
+//
+//$view = new stdClass();
+//$jobListData = new jobListDataSet();
+//$view->jobListData = $jobListData->getJobListData($_SESSION['id']);
 
-session_start();
-
-$view = new stdClass();
-$jobListData = new jobListDataSet();
-$view->jobListData = $jobListData->getJobListData($_SESSION['id']);
-
-if ($_SESSION['userType'] == "2")
-{
-    $jobListDataSet = new jobListDataSet();
-    $view->jobListDataSet = $jobListDataSet->getJobListData($view->jobListDataSet->getJobListData());
-}
-elseif ($_SESSION['userType'] == "3")
-{
-    // Employer view of placements
-}
-elseif ($_SESSION['userType'] == "1")
-{
-    // Admin view of placements
-}
+//if ($_SESSION['userType'] == "2")
+//{
+//    $jobListDataSet = new jobListDataSet();
+//    $view->jobListDataSet = $jobListDataSet->getJobListData($view->jobListDataSet->getJobListData());
+//}
+//elseif ($_SESSION['userType'] == "3")
+//{
+//    // Employer view of placements
+//}
+//elseif ($_SESSION['userType'] == "1")
+//{
+//    // Admin view of placements
+//}
+//else
+//{
+//    $jobListDataSet = new jobListDataSet();
+//    $view->jobListDataSet = $jobListDataSet->getJobListData($view->jobListDataSet->getJobListData());
+//}
 
 
 // Include the login view (HTML form)
