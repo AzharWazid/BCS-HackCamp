@@ -25,14 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':dob', $dob);
     $stmt->bindParam(':userId', $userId);
 
-    $SQL = "UPDATE User SET email = :email WHERE userID = :ID";
+    $SQL = "UPDATE User SET email = :email WHERE userId = :ID";
     $stmt = $dbHandle->prepare($SQL);
     $stmt->bindParam(':email', $email);
 
     $stmt->execute();
 }
 
-// load current data
+// load current data (can we re use load function?)
 $view = new stdClass();
 $UserInfoDataSet = new UserInfoDataSet();
 $view->userInfoDataSet = $UserInfoDataSet->getUserInfo($_SESSION["id"]);
@@ -43,3 +43,5 @@ if ($_SESSION["userType"] == "2") {
         $view->studentInfoDataSet = $studentInfoDataSet->getStudentInfo($view->userInfoDataSet->getID());
     }
 }
+
+require_once ("../View/editDetails.phtml");
