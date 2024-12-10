@@ -44,7 +44,7 @@ class studentInfoDataSet{
     }
 
     public function getStudentInfo($id){
-        $sql = "SELECT * FROM student_info WHERE id = :id";
+        $sql = "SELECT * FROM StudentInfo WHERE id = :id";
         $stmt = $this->dbHandle->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -67,5 +67,14 @@ class studentInfoDataSet{
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':level', $level);
         $stmt->execute();
+    }
+
+    public function validateStudentInfo($id){
+        $sql = "SELECT COUNT(*) FROM StudentInfo WHERE userInfo = :id";
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['COUNT(*)'];
     }
 }
