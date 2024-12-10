@@ -17,7 +17,7 @@ $dob = isset($_SESSION['dob']) ? $_SESSION['dob'] : '';
     <body>
 <div class="container mt-5">
     <h1 class="text-center">Edit Your Details</h1>
-    <form action="/Controller/updateDetails.php" method="POST">
+    <form action="/Controller/editDetails.php" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
