@@ -27,18 +27,18 @@ class userInfoDataSet{
 
     public function setUserInfo($address, $phoneNumber, $dobYMD, $userID, $additionalInfo)
     {
+        if(!isset($additionalInfo)){
+            $additionalInfo = null;
+        }
         $SQL = "INSERT INTO UserInfo (address, phoneNumber, dobYMD, userID, additionalInfo)
         VALUES (:address, :phoneNumber, :dobYMD, :userID, :additionalInfo)";
 
         $smt = $this->dbHandle->prepare($SQL);
-        $smt->bindParam(":id", $id, PDO::PARAM_INT);
         $smt->bindParam(":address", $address, PDO::PARAM_STR);
         $smt->bindParam(":phoneNumber", $phoneNumber, PDO::PARAM_STR);
         $smt->bindParam(":dobYMD", $dobYMD, PDO::PARAM_STR);
         $smt->bindParam(":userID", $userID, PDO::PARAM_INT);
         $smt->bindParam(":additionalInfo", $additionalInfo, PDO::PARAM_STR);
-
-        return $smt->execute();
-
+        $smt->execute();
     }
 }

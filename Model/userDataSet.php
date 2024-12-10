@@ -44,14 +44,21 @@ class userDataSet
 //    }
 
     // Add User Data
-    public function addUserData($name, $email, $password)
+    public function addUserData($name, $email, $password, $userType)
     {
+        if ($userType == "student"){
+            $userType = 2;
+        }
+        elseif ($userType == "employer"){
+            $userType = 3;
+        }
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        $SQL="INSERT into User (name, email, password) VALUES (:name, :email, :password)";
+        $SQL="INSERT into User (name, email, password, userTypes) VALUES (:name, :email, :password, :userTypes)";
         $stmt = $this->dbHandle->prepare($SQL);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $passwordHash);
+        $stmt->bindParam(':userTypes', $userType);
         $stmt->execute();
     }
 
@@ -73,6 +80,34 @@ class userDataSet
             //echo "Invalid email or password!";
             return false;
         }
+    }
+
+    // Check if email is taken
+    public function verifyUserEmail($email){
+        $stmt = $this->dbHandle->prepare("SELECT COUNT(*) FROM User WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        var_dump($result);
+
+        if ($result["COUNT(*)"] <= 0){
+            var_dump($result);
+            return true;
+        }
+        else{
+            var_dump($result);
+            return false;
+        }
+    }
+
+    // Gets user ID via Email
+    public function getUserIdByEmail($email)
+    {
+        $stmt = $this->dbHandle->prepare("SELECT ID FROM User WHERE email = :email");
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result["ID"];
     }
 
     // Example usage for user validation (Cut and paste this where it's needed)

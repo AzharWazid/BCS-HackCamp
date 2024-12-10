@@ -2,11 +2,13 @@
 require_once ("../Model/Database.php");
 require_once ("../Model/jobListData.php");
 
-class jobListDataSet {
+class jobListDataSet
+{
 
     private $dbHandle, $dbInstance;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getDbConnection();
     }
