@@ -106,8 +106,8 @@ class userDataSet
         $stmt = $this->dbHandle->prepare("SELECT ID FROM User WHERE email = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result["ID"];
     }
 
     // Example usage for user validation (Cut and paste this where it's needed)

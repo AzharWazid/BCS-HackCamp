@@ -15,22 +15,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $address = $_POST['address'];
     $userTypes = isset($_POST['user_type']) ? $_POST['user_type'] : [];
-    var_dump($email);
+
+    //var_dump($email);
     //var_dump($address);
+
     if($userData->verifyUserEmail($email)){
         $userData->addUserData($name, $email, $password, $userTypes);
         $userID = $userData->getUserIdByEmail($email);
         $userInfoData->setUserInfo($address, $phoneNumber, $dobYMD, $userID, null);
-        echo "done";
+
+        if($userTypes == ["student"]){
+            header("location: registerPage2.php");
+        }
+        else{
+            header("location: login.php");
+        }
     }
     else{
         echo "Email is already in use";
     }
-
-    // Process the data (e.g., validation, saving to the database
-    // Example:
-    // echo "User Registered: $firstName $lastName with email $email";
-
 }
 require("../View/registerPage1.phtml");
 
