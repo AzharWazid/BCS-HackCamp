@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userID = $userData->getUserIdByEmail($email);
         $userInfoData->setUserInfo($address, $phoneNumber, $dobYMD, $userID, null);
 
-        if($userTypes == ["student"]){
+        if($userTypes == "student"){
             header("location: registerPage2.php");
         }
         else{
