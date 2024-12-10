@@ -14,7 +14,6 @@ if ($_SESSION["userType"] == "2")
     $studentInfoDataSet = new StudentInfoDataSet();
     if ($studentInfoDataSet->validateStudentInfo($view->userInfoDataSet->getId()) >= 1){
         $view->studentInfoDataSet=$studentInfoDataSet->getStudentInfo($view->userInfoDataSet->getID());
-
     }
 }
 

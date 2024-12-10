@@ -1,6 +1,6 @@
 <?php
 
-define('UPLOAD_DIRECTORY', '/path/to/upload/'); #replace with cv uploads path
+define('UPLOAD_DIRECTORY', '/Controller/uploadCV.php'); #replace with cv uploads path
 define('MAXSIZE', 5242880);
 
 $ALLOWED_EXTENSIONS = array('pdf');
