@@ -18,6 +18,25 @@ if(session_status() == PHP_SESSION_NONE){
         .nav-link {
             cursor: pointer;
         }
+
+        /* Change options to blue on hover */
+        .nav-link:hover {
+            color: blue !important;
+        }
+
+        .dropdown-item:hover {
+            color: blue !important;
+        }
+
+        /* Set the font to DIN Next Arabic Regular */
+        body, .nav-link, .dropdown-item {
+            font-family: 'DIN Next Arabic Regular', sans-serif;
+        }
+
+        /* Change cursor to pointer for Sign in/Register dropdown options */
+        .dropdown-item {
+            cursor: pointer;
+        }
     </style>
 
     <title>BCS Placement Matching</title>
@@ -59,10 +78,6 @@ if(session_status() == PHP_SESSION_NONE){
                     </ul>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
         </div>
     </div>
 </nav>
