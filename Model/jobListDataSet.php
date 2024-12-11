@@ -16,7 +16,7 @@ class jobListDataSet
     public function getJobListData($id)
     {
         // Prepare the SQL Query
-        $stmt = $this->dbHandle->prepare("SELECT * FROM JobList");
+        $stmt = $this->dbHandle->prepare('SELECT * FROM "JobList"');
         $stmt->execute();
         // Fetch all rows as array
         $jobList = [];

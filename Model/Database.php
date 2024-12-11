@@ -23,7 +23,8 @@ class Database{
         $user = "postgres";
         $password = "1234";
         $dbname = "postgres";
-        $port = 5432;
+        $port = "5432";
+
         try{
             $this->_dbHandle = new PDO('pgsql:host='.$host.';port='.$port.';dbname='.$dbname, $user, $password);
         }
