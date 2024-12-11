@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require_once('template/header.phtml');
 
 // Debug to confirm the page is loaded
-echo "Edit Details Page Loaded";
+// echo "Edit Details Page Loaded";
 
 // Load user details from session or database
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
