@@ -15,7 +15,7 @@ $dob = isset($_SESSION['dob']) ? $_SESSION['dob'] : '';
 ?>
 
     <body>
-<div class="container mt-5">
+<div class="container mt-5 b-colour">
     <h1 class="text-center">Edit Your Details</h1>
     <form action="/Controller/editDetails.php" method="POST">
         <div class="mb-3">
@@ -38,7 +38,7 @@ $dob = isset($_SESSION['dob']) ? $_SESSION['dob'] : '';
     </form>
 
     <!-- CV Upload Form -->
-    <h2 class="text-center mt-5">Upload Your CV</h2>
+    <h2 class="text-center mt-5 b-colour">Upload Your CV</h2>
     <form id="cvForm" onsubmit="uploadCV(event)">
         <div class="mb-3">
             <label for="cv_file" class="form-label">CV File</label>
