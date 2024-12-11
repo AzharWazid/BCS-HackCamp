@@ -36,35 +36,17 @@
             <div class="col-md-9">
                 <h5 class="mb-3">Available Placements</h5>
                 <ul class="list-group">
-                    <!-- Job 1 -->
-                    <li class="list-group-item yellow-card-job-list p-3 mb-3">
-                        <h5 class="mb-2">Assurance Summer Internships - July 2025 Intake</h5>
-                        <p class="text-muted mb-1">Finance, FinTech, Business, Accountancy, Data</p>
-                        <p class="mb-1"><strong>Salary:</strong> Competitive</p>
-                        <p class="mb-1"><strong>Location:</strong> Various locations</p>
-                        <p class="mb-1"><strong>Duration:</strong> 4 weeks</p>
-                        <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
-                    </li>
-
-                    <!-- Job 2 -->
-                    <li class="list-group-item yellow-card-job-list p-3 mb-3">
-                        <h5 class="mb-2">Technology Internship - Summer 2025</h5>
-                        <p class="text-muted mb-1">Tech, Software Development, AI, Machine Learning</p>
-                        <p class="mb-1"><strong>Salary:</strong> Competitive</p>
-                        <p class="mb-1"><strong>Location:</strong> Remote</p>
-                        <p class="mb-1"><strong>Duration:</strong> 8 weeks</p>
-                        <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
-                    </li>
-
-                    <!-- Job 3 -->
-                    <li class="list-group-item yellow-card-job-list p-3 mb-3">
-                        <h5 class="mb-2">Marketing Summer Placement - 2025</h5>
-                        <p class="text-muted mb-1">Marketing, PR, Communications, Digital Media</p>
-                        <p class="mb-1"><strong>Salary:</strong> Competitive</p>
-                        <p class="mb-1"><strong>Location:</strong> London</p>
-                        <p class="mb-1"><strong>Duration:</strong> 1 Year</p>
-                        <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
-                    </li>
+                    <?php foreach ($view->jobListData as $job): ?>
+                        <li class="list-group-item yellow-card-job-list p-3 mb-3">
+                            <h5 class="mb-2"><?= htmlspecialchars($job->getTitle()); ?></h5>
+                            <p class="text-muted mb-1"><?= htmlspecialchars($job->getDescription()); ?></p>
+                            <p class="mb-1"><strong>Salary:</strong> <?= htmlspecialchars($job->getSalary()); ?></p>
+                            <p class="mb-1"><strong>Location:</strong> <?= htmlspecialchars($job->getLocation()); ?></p>
+                            <p class="mb-1"><strong>Start Date:</strong> <?= htmlspecialchars($job->getStartDate()); ?></p>
+                            <p class="mb-1"><strong>End Date:</strong> <?= htmlspecialchars($job->getEndDate()); ?></p>
+                            <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>
