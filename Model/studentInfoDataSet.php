@@ -1,6 +1,6 @@
 <?php
-require_once ('Model/Database.php');
-require_once ('Model/studentInfoDataSet.php');
+require_once ('../Model/Database.php');
+require_once ('../Model/studentInfoData.php');
 
 class studentInfoDataSet{
     protected $dbHandle, $dbInstance;
@@ -44,7 +44,7 @@ class studentInfoDataSet{
     }
 
     public function getStudentInfo($id){
-        $sql = "SELECT * FROM student_info WHERE id = :id";
+        $sql = 'SELECT * FROM "StudentInfo" WHERE "UniqueID" = :id';// Postgres
         $stmt = $this->dbHandle->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -59,7 +59,10 @@ class studentInfoDataSet{
             $cvPath = $this->storeStudentCV($userInfoId, $cv);
         }
 
-        $sql = "INSERT INTO StudentInfo (userInfo, CV, skills, category, level) VALUES (:userInfoId, :cv, :skills, :category, :level)";
+        $sql = '
+        INSERT INTO "StudentInfo" ("userInfo", "CV", "skills", "category", "level")
+        VALUES (:userInfoId, :cv, :skills, :category, :level)
+        ';// Postgres
         $stmt = $this->dbHandle->prepare($sql);
         $stmt->bindParam(':userInfoId', $userInfoId);
         $stmt->bindParam(':cv', $cvPath);
@@ -67,5 +70,14 @@ class studentInfoDataSet{
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':level', $level);
         $stmt->execute();
+    }
+
+    public function validateStudentInfo($id){
+        $sql = 'SELECT COUNT(*) FROM "StudentInfo" WHERE "userInfo" = :id';// Postgres
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['count'];
     }
 }

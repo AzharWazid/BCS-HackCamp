@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="bcs" uuid="06fb1e6c-3248-485e-bae5-d10535b49c77">
+    <data-source source="LOCAL" name="bcs" uuid="bc6f649c-875f-4432-8700-cf7ee2c2c5fc">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
@@ -16,7 +16,7 @@
         </library>
       </libraries>
     </data-source>
-    <data-source source="LOCAL" name="postgres@localhost" uuid="e6885574-cc6d-45e7-a19c-d2f4b7dda979">
+    <data-source source="LOCAL" name="postgres@local" uuid="078ce0e5-6f62-491e-9de9-97c7a43973dd">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>

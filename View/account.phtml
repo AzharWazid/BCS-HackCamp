@@ -1,19 +1,74 @@
-<?php require_once('template/header.phtml'); ?>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once('template/header.phtml');
+?>
 
-<body>
+    <body>
 <div class="container mt-3">
     <h1>
         Account
     </h1>
     <h2>
-        Welcome <?php echo $_SESSION['name'];?>
+        Welcome <?php echo isset($_SESSION['name']) ? $_SESSION['name'] : 'Guest'; ?>
     </h2>
-    <div class="container mt-3 border rounded bg-white p-3">
-        <a ><?php if($_SESSION['userType'] == 2){echo "Student";} elseif($_SESSION['userType'] == 3){echo "Employer";} else{echo "Admin";} ?> Account</a>
+    <!-- Smaller Box -->
+    <div class="container mt-3 border rounded bg-white p-3" style="max-width: 600px;">
+        <a><?php
+            if (isset($_SESSION['userType'])) {
+                if ($_SESSION['userType'] == 2) {
+                    echo "Student";
+                } elseif ($_SESSION['userType'] == 3) {
+                    echo "Employer";
+                } else {
+                    echo "Admin";
+                }
+            } else {
+                echo "Unknown";
+            }
+            ?> Account</a>
         <h5 class="mt-2">Email</h5>
-        <p class="border p-2"><?php echo $_SESSION['email'];?></p>
+        <p class="border p-2"><?php echo isset($_SESSION['email']) ? $_SESSION['email'] : 'N/A'; ?></p>
+        <?php if (!empty($view->userInfoDataSet)): ?>
+            <h5 class="mt-2">Address</h5>
+            <p class="border p-2"><?php echo $view->userInfoDataSet->getAddress(); ?></p>
+            <h5 class="mt-2">Phone Number</h5>
+            <p class="border p-2"><?php echo $view->userInfoDataSet->getPhoneNumber(); ?></p>
+            <h5 class="mt-2">Date Of Birth (YY-MM-DD)</h5>
+            <p class="border p-2"><?php echo $view->userInfoDataSet->getDobYMD(); ?></p>
+        <?php endif; ?>
+    </div>
+
+    <!-- CV Upload Section -->
+    <div class="container mt-4">
+        <h5>Upload Your CV</h5>
+        <form action="/Controller/uploadCV.php" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="cvUpload" class="form-label">Upload CV</label>
+                <input class="form-control" type="file" id="cvUpload" name="cv_file" accept=".pdf,.doc,.docx" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload CV</button>
+        </form>
+
+        <!-- View CV Button -->
+        <?php if (isset($_SESSION['cv_file'])): ?>
+            <div class="mt-3">
+                <a href="/CV Uploads/<?php echo $_SESSION['cv_file']; ?>" target="_blank" class="btn btn-secondary">
+                    View CV
+                </a>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
-</body>
 
-<?php require_once ("template/footer.phtml"); ?>
+<!-- Larger Edit Button -->
+<div id="editButtonContainer" class="text-end me-3">
+    <button type="button" class="btn btn-primary"
+            onclick="location.href='../Controller/updateDetails.php';"
+            style="--bs-btn-padding-y: 1rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1.25rem;">
+        <i class="fas fa-edit"></i> Edit
+    </button>
+</div>
+
+<?php require_once("template/footer.phtml"); ?>

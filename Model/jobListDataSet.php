@@ -1,12 +1,14 @@
 <?php
-require_once ("Model/Database.php");
-require_once ("Model/jobListData.php");
+require_once ("../Model/Database.php");
+require_once ("../Model/jobListData.php");
 
-class jobListDataSet {
+class jobListDataSet
+{
 
-    private $dbHandle, $dbInstance;
+    protected $dbHandle, $dbInstance;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getDbConnection();
     }
@@ -14,7 +16,7 @@ class jobListDataSet {
     public function getJobListData($id)
     {
         // Prepare the SQL Query
-        $stmt = $this->dbHandle->prepare("SELECT * FROM JobList");
+        $stmt = $this->dbHandle->prepare('SELECT * FROM "JobList"');
         $stmt->execute();
         // Fetch all rows as array
         $jobList = [];
