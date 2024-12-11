@@ -130,5 +130,5 @@ body {
     margin-top: 20px;
 }
 .b-colour{
-    color: black;
+    color: black; !important;
 }
