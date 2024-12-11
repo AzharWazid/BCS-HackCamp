@@ -3,19 +3,16 @@
 class Skill
 {
     protected $dbHandle, $dbInstance;
-    protected $skillName;
-
-    public function __construct($dbRow)
+    public function __construct()
     {
         $this->dbInstance = Database::getInstance();
         $this->dbHandle = $this->dbInstance->getDbConnection();
-        $this->skillName = $dbRow['skillName'];
     }
 
     public function skillAssign()
     {
         // Query to fetch all skills
-        $query = "SELECT id, title FROM Skill";
+        $query = 'SELECT * FROM "Skill"';
         $stmt = $this->dbHandle->query($query);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -23,8 +20,10 @@ class Skill
         $skills = [];
         foreach ($result as $row)
         {
-            $skills[$row['id']] = $row['title'];
+            $skills[$row['id']] = $row['skillName'];
         }
+        //var_dump($skills);
+        return $skills;
 
     }
 }
