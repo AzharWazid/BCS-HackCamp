@@ -46,6 +46,7 @@ class userDataSet
     // Add User Data
     public function addUserData($name, $email, $password, $userType)
     {
+        $this->resetSequenceIfNecessary();
         if ($userType == "student"){
             $userType = 2;
         }
@@ -53,19 +54,20 @@ class userDataSet
             $userType = 3;
         }
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-        $SQL="INSERT into User (name, email, password, userTypes) VALUES (:name, :email, :password, :userTypes)";
+        $SQL='INSERT INTO "Users" (name, email, password, "userTypes") VALUES (:name, :email, :password, :userTypes)';
         $stmt = $this->dbHandle->prepare($SQL);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $passwordHash);
         $stmt->bindParam(':userTypes', $userType);
+
         $stmt->execute();
     }
 
     // User Validation
     public function validateUserData($email, $password)
     {
-        $stmt = $this->dbHandle->prepare("SELECT * FROM User WHERE email = :email");
+        $stmt = $this->dbHandle->prepare("SELECT * FROM \"Users\" WHERE email = :email");// Postgres
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -84,13 +86,13 @@ class userDataSet
 
     // Check if email is taken
     public function verifyUserEmail($email){
-        $stmt = $this->dbHandle->prepare("SELECT COUNT(*) FROM User WHERE email = :email");
+        $stmt = $this->dbHandle->prepare("SELECT COUNT(*) FROM \"Users\" WHERE email = :email");// Postgres
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         var_dump($result);
 
-        if ($result["COUNT(*)"] <= 0){
+        if ($result["count"] <= 0){
             var_dump($result);
             return true;
         }
@@ -103,11 +105,37 @@ class userDataSet
     // Gets user ID via Email
     public function getUserIdByEmail($email)
     {
-        $stmt = $this->dbHandle->prepare("SELECT ID FROM User WHERE email = :email");
+        $stmt = $this->dbHandle->prepare('SELECT "ID" FROM "Users" WHERE email = :email');// Postgres
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result["ID"];
+    }
+
+    private function resetSequenceIfNecessary()
+    {
+        // Check if the sequence is out of sync with the table
+        // Get the current maximum ID value
+        $SQL = 'SELECT MAX("ID") FROM "Users"';
+        $stmt = $this->dbHandle->query($SQL);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // Get the max ID
+        $maxId = $result['max'];
+
+        // Check if the current sequence value is lower than the max ID value
+        $SQL = 'SELECT last_value FROM "Users_ID_seq"';
+        $stmt = $this->dbHandle->query($SQL);
+        $sequence = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastValue = $sequence['last_value'];
+
+        // If the sequence value is less than the max ID, reset the sequence
+        if ($lastValue <= $maxId) {
+            $SQL = 'SELECT setval(pg_get_serial_sequence(\'"Users"\', \'ID\'), :maxId)';
+            $stmt = $this->dbHandle->prepare($SQL);
+            $stmt->bindParam(':maxId', $maxId, PDO::PARAM_INT);
+            $stmt->execute();
+        }
     }
 
     // Example usage for user validation (Cut and paste this where it's needed)
