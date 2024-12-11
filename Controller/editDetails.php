@@ -18,18 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $dbInstance = Database::getInstance();
     $dbHandle = $dbInstance->getDbConnection();
 
-    $SQL = "UPDATE UserInfo SET address = :address, phoneNumber = :phone, dobYMD = :dob WHERE userID = :userId";
-    $stmt = $dbHandle->prepare($SQL);
-    $stmt->bindParam(':address', $address);
-    $stmt->bindParam(':phone', $phone);
-    $stmt->bindParam(':dob', $dob);
-    $stmt->bindParam(':userId', $userId);
+    $SQL1 = "UPDATE UserInfo SET address = :address, phoneNumber = :phone, dobYMD = :dob WHERE userID = :userId";
+    $stmt1 = $dbHandle->prepare($SQL1);
+    $stmt1->bindParam(':address', $address);
+    $stmt1->bindParam(':phone', $phone);
+    $stmt1->bindParam(':dob', $dob);
+    $stmt1->bindParam(':userId', $userId);
+    $stmt1->execute();
 
-    $SQL = "UPDATE User SET email = :email WHERE userId = :ID";
-    $stmt = $dbHandle->prepare($SQL);
-    $stmt->bindParam(':email', $email);
-
-    $stmt->execute();
+    $SQL2 = "UPDATE User SET email = :email WHERE ID = :userId";
+    $stmt2 = $dbHandle->prepare($SQL2);
+    $stmt2->bindParam(':email', $email);
+    $stmt2->bindParam(':userId', $userId);
+    $stmt2->execute();
 }
 
 // load current data (can we re use load function?)
