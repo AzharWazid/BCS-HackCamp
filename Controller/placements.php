@@ -14,18 +14,19 @@ session_start();
 $view = new stdClass();
 $jobListData = new jobListDataSet();
 // Fetch Data for logged in user
-$view->jobListData = $jobListData->getJobListData($_SESSION['id']);
 
 // Check user type to control data visibility
 if ($_SESSION['userType'] == "2")
 {
-    $jobListDataSet = new jobListDataSet();
-    $view->jobListDataSet = $jobListDataSet->getJobListData($view->jobListDataSet->getJobListData());
+    $view->jobListDataSet = $jobListData->getJobListData($_SESSION['id']);
+
 }
 elseif ($_SESSION['userType'] == "1" || $_SESSION['userType'] == "3")
 {
-    $view->jobListDataSet = $jobListData;
+    $view->jobListDataSet = $jobListData->getJobListData($_SESSION['id']);
 }
+else{
 
+    $view->jobListDataSet = $jobListData->getJobListData(null);}
 // Include the login view (HTML form)
 require("../View/placements.phtml");
