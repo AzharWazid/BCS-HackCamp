@@ -45,7 +45,7 @@
                             <p class="mb-1"><strong>Skills Required:</strong> <?= htmlspecialchars($view->skill[$job->getSkills()]); ?></p>
                             <p class="mb-1"><strong>Start Date:</strong> <?= htmlspecialchars($job->getStartDate()); ?></p>
                             <p class="mb-1"><strong>End Date:</strong> <?= htmlspecialchars($job->getEndDate()); ?></p>
-                            <a href="#" class="btn btn-primary btn-sm mt-2">Apply</a>
+                            <a href="../Controller/placementInfo.php" class="btn btn-primary btn-sm mt-2">Apply</a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
