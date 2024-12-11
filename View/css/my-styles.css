@@ -39,6 +39,7 @@ main {
     justify-content: center;
     padding: 20px;
 }
+
 .registration-container {
     display: flex;
     background-color: white;
@@ -127,6 +128,6 @@ body {
     align-items: center;
     margin-top: 20px;
 }
-label {
-    color: black; /* Makes the label text color black */
+.b-colour{
+    color: black;
 }
