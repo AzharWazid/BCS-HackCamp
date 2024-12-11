@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $dbInstance = Database::getInstance();
 $dbHandle = $dbInstance->getDbConnection();
 
-$SQL1 = "UPDATE UserInfo SET address = :address, phoneNumber = :phone, dobYMD = :dob WHERE userID = :userId";
+$SQL1 = 'UPDATE "UserInfo" SET "address" = :address, "phoneNumber" = :phone, "dobYMD" = :dob WHERE "userID" = :userId';
 $stmt1 = $dbHandle->prepare($SQL1);
 $stmt1->bindParam(':address', $address);
 $stmt1->bindParam(':phone', $phone);
@@ -43,7 +43,7 @@ $stmt1->bindParam(':dob', $dob);
 $stmt1->bindParam(':userId', $userId);
 $stmt1->execute();
 
-$SQL2 = "UPDATE User SET email = :email WHERE ID = :userId";
+$SQL2 = 'UPDATE "Users" SET "email" = :email WHERE "ID" = :userId';
 $stmt2 = $dbHandle->prepare($SQL2);
 $stmt2->bindParam(':email', $email);
 $stmt2->bindParam(':userId', $userId);
