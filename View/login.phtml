@@ -1,39 +1,96 @@
 <?php require_once ("template/header.phtml"); ?>
 
-<div class="flex-main">
-    <div class="login-container b-colour">
-        <!-- Welcome Section -->
-        <div class="welcome-section b-colour">
-            <h1>Welcome back!</h1>
-            <p>You can sign in to access with your existing account.</p>
-        </div>
+    <div class="flex-main">
+        <div class="login-container">
+            <!-- Welcome Section -->
+            <div class="welcome-section b-colour">
+                <h1>Welcome back!</h1>
+                <p>You can sign in to access with your existing account.</p>
+            </div>
 
-        <!-- Form Section -->
-        <div class="form-section">
-            <h2>Sign In</h2>
-            <form action="../Controller/login.php" method="post">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2>Sign In</h2>
+                <form action="../Controller/login.php" method="post">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="rememberMe" name="remember_me">
+                        <label class="form-check-label" for="rememberMe">
+                            Remember me
+                        </label>
+                    </div>
+                    <a class="errorMessage"><?php echo isset($view->errorMessage) ? htmlspecialchars($view->errorMessage) : ''; ?></a>
+                    <button type="submit" class="btn w-100">Sign In</button>
+                </form>
+                <div class="mt-3 text-center">
+                    <p>New around here? <a href="../Controller/registerPage1.php" class="text-decoration-none">Sign up</a></p>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                </div>
-                <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" id="rememberMe" name="remember_me">
-                    <label class="form-check-label" for="rememberMe">
-                        Remember me
-                    </label>
-                </div>
-                <a class="errorMessage"><?php echo isset($view->errorMessage) ? htmlspecialchars($view->errorMessage) : ''; ?></a>
-                <button type="submit" class="btn w-100">Sign In</button>
-            </form>
-            <div class="mt-3 text-center">
-                <p>New around here? <a href="../Controller/registerPage1.php" class="text-decoration-none">Sign up</a></p>
             </div>
         </div>
     </div>
-</div>
+
+    <style>
+        .flex-main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-container {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            padding: 0;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 900px;
+            background-color: #f7f7f7;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-section {
+            flex: 1;
+            background-color: #cddc39;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px 0 0 8px;
+            margin: 0;
+            height: 100%;
+        }
+
+        .form-section {
+            flex: 1;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            background-color: white;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+
+            .welcome-section {
+                border-radius: 8px 8px 0 0;
+            }
+
+            .form-section {
+                border-radius: 0 0 8px 8px;
+            }
+        }
+    </style>
 
 <?php require_once ("template/footer.phtml"); ?>

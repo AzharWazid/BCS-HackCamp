@@ -1,82 +1,129 @@
- <?php require_once("template/header.phtml"); ?>
+<?php require_once("template/header.phtml"); ?>
 
-<main>
-    <div class="registration-container">
-        <div class="left-section">
-            <h1 class="mb-3">BCS Placement</h1> <!-- Updated text -->
-            <p>Get started by filling out the registration form.</p>
-        </div>
-        <div class="right-section">
-            <h2 class="mb-4 b-colour">Registration</h2>
-            <form class="row g-3 w-100" style="max-width: 600px;" action="../Controller/registerPage1.php" method="POST">
-                <div class="col-md-6 b-colour">
-                    <label for="validationServer01" class="form-label">First name</label>
-                    <input type="text" class="form-control" id="validationServer01" name="first_name" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-6 b-colour">
-                    <label for="validationServer02" class="form-label">Last name</label>
-                    <input type="text" class="form-control" id="validationServer02" name="last_name" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-12 b-colour">
-                    <label for="validationServer03" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="validationServer03" name="email" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-6 b-colour">
-                    <label for="validationServer04" class="form-label">Date of Birth</label>
-                    <input type="date" class="form-control" id="validationServer04" name="dob" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-6 b-colour">
-                    <label for="validationServer05" class="form-label">Phone Number</label>
-                    <input type="tel" class="form-control" id="validationServer05" name="phone" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-12 b-colour">
-                    <label for="validationServer06" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="validationServer06" name="address" placeholder="Enter your address" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-6 b-colour">
-                    <label for="validationServer07" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="validationServer07" name="password" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                </div>
-                <div class="col-md-12 b-colour">
-                    <label class="form-label">User Type</label>
-                    <div class="d-flex justify-content-start align-items-center">
-                        <div class="form-check me-3">
-                            <input type="radio" id="student" name="user_type" value="student" class="form-check-input" required>
-                            <label for="student" class="form-check-label">Student</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="radio" id="employer" name="user_type" value="employer" class="form-check-input" required>
-                            <label for="employer" class="form-check-label">Employer</label>
+    <main>
+        <div class="registration-container">
+            <div class="left-section">
+                <h1 class="mb-3">BCS Placement</h1>
+                <p>Get started by filling out the registration form.</p>
+            </div>
+            <div class="right-section">
+                <h2 class="mb-4 b-colour">Registration</h2>
+                <form class="row g-3 w-100" style="max-width: 600px;" action="../Controller/registerPage1.php" method="POST">
+                    <div class="col-md-6 b-colour">
+                        <label for="validationServer01" class="form-label">First name</label>
+                        <input type="text" class="form-control" id="validationServer01" name="first_name" required>
+                        <div class="valid-feedback">
+                            Looks good!
                         </div>
                     </div>
-                </div>
-                <div class="col-12 b-colour">
-                    <button class="btn btn-primary w-100" type="submit">Confirm</button>
-                </div>
-            </form>
+                    <div class="col-md-6 b-colour">
+                        <label for="validationServer02" class="form-label">Last name</label>
+                        <input type="text" class="form-control" id="validationServer02" name="last_name" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-12 b-colour">
+                        <label for="validationServer03" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="validationServer03" name="email" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-6 b-colour">
+                        <label for="validationServer04" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="validationServer04" name="dob" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-6 b-colour">
+                        <label for="validationServer05" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="validationServer05" name="phone" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-12 b-colour">
+                        <label for="validationServer06" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="validationServer06" name="address" placeholder="Enter your address" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-6 b-colour">
+                        <label for="validationServer07" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="validationServer07" name="password" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="col-md-12 b-colour">
+                        <label class="form-label">User Type</label>
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="form-check me-3">
+                                <input type="radio" id="student" name="user_type" value="student" class="form-check-input" required>
+                                <label for="student" class="form-check-label">Student</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" id="employer" name="user_type" value="employer" class="form-check-input" required>
+                                <label for="employer" class="form-check-label">Employer</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 b-colour">
+                        <button class="btn btn-primary w-100" type="submit">Confirm</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</main>
+    </main>
+
+    <style>
+        .registration-container {
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            padding: 0;
+            border-radius: 8px;
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #f7f7f7;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-section {
+            flex: 1;
+            background-color: #cddc39;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .right-section {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 0 8px 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .registration-container {
+                flex-direction: column;
+            }
+
+            .left-section {
+                border-radius: 8px 8px 0 0;
+            }
+
+            .right-section {
+                border-radius: 0 0 8px 8px;
+            }
+        }
+    </style>
 
 <?php require_once ('../View/template/footer.phtml');?>
