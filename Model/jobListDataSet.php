@@ -5,7 +5,7 @@ require_once ("../Model/jobListData.php");
 class jobListDataSet
 {
 
-    private $dbHandle, $dbInstance;
+    protected $dbHandle, $dbInstance;
 
     public function __construct()
     {
