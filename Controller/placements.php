@@ -1,32 +1,31 @@
 <?php
 
-//require_once("../Model/jobListDataSet.php");
-//
-//session_start();
-//
+require_once("../Model/jobListDataSet.php");
+
+session_start();
+
+//// Redirect if the user is not logged in
+//if (!isset($_SESSION['id']))
+//{
+//    header("location: login.php");
+//    exit;
+//}
+
 //$view = new stdClass();
 //$jobListData = new jobListDataSet();
-//$view->jobListData = $jobListData->getJobListData($_SESSION['id']);
-
+//// Fetch Data for logged in user
+////$view->jobListData = $jobListData->getJobListData($_SESSION['id']);
+//
+//// Check user type to control data visibility
 //if ($_SESSION['userType'] == "2")
 //{
 //    $jobListDataSet = new jobListDataSet();
 //    $view->jobListDataSet = $jobListDataSet->getJobListData($view->jobListDataSet->getJobListData());
 //}
-//elseif ($_SESSION['userType'] == "3")
+//elseif ($_SESSION['userType'] == "1" || $_SESSION['userType'] == "3")
 //{
-//    // Employer view of placements
+//    $view->jobListDataSet = $jobListData;
 //}
-//elseif ($_SESSION['userType'] == "1")
-//{
-//    // Admin view of placements
-//}
-//else
-//{
-//    $jobListDataSet = new jobListDataSet();
-//    $view->jobListDataSet = $jobListDataSet->getJobListData($view->jobListDataSet->getJobListData());
-//}
-
 
 // Include the login view (HTML form)
 require("../View/placements.phtml");

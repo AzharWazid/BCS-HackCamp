@@ -19,8 +19,13 @@ class Database{
      * assigns the PDO to _dbHandle
      */
     private function __construct(){
+        $host = "localhost";
+        $user = "postgres";
+        $password = "1234";
+        $dbname = "postgres";
+        $port = 5432;
         try{
-            $this->_dbHandle = new PDO('sqlite:../bcs.sqlite');
+            $this->_dbHandle = new PDO('pgsql:host='.$host.';port='.$port.';dbname='.$dbname, $user, $password);
         }
         catch(PDOException $e){
             echo $e->getMessage();
