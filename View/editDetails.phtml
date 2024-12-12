@@ -32,8 +32,7 @@ $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
             <input type="date" class="form-control" id="dob" name="dob" value="<?php echo htmlspecialchars($dob); ?>" required>
         </div>
         <button type="submit" class="btn btn-success w-100">Update Details</button>
-
-    <?php if (isset($_SESSSION['userType']) && $_SESSION['userType'] == 2): ?>
+<?php if (isset($_SESSSION['userType']) && $_SESSION['userType'] == 2): ?>
     <!-- CV Upload Form -->
     <h2 class="text-center mt-5 b-colour">Upload Your CV</h2>
         <div class="mb-3">
@@ -41,7 +40,7 @@ $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
             <input type="file" class="form-control" id="cv_file" name="cv_file" accept=".pdf" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Upload CV</button>
-    <?php endif; ?>
+<?php endif; ?>
     </form>
 </div>
 
