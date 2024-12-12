@@ -16,14 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $level = 1; // Example, should come from form or default value
     $userID = 1; // Example, should come from session or context
 
-    // Check for validation errors
-    if (empty($title) || !$salary || empty($startDate) || empty($endDate) || empty($description) || empty($skills)) {
-        die("Invalid input. Please fill in all fields correctly.");
-    }
-
     $jobListDataSet->addJobList($title, $salary, $startDate, $endDate, $description, $skills, $location, $category, $level, $userID);
     header('Location: ../placement.php');
 
 }
+
+
 
 require_once ('../View/addPlacement.phtml');

@@ -13,10 +13,26 @@ class jobListDataSet
         $this->dbHandle = $this->dbInstance->getDbConnection();
     }
 
-    public function getJobListData($id)
+    public function getJobListData()
     {
         // Prepare the SQL Query
         $stmt = $this->dbHandle->prepare('SELECT * FROM "JobList"');
+        $stmt->execute();
+        // Fetch all rows as array
+        $jobList = [];
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $jobList[] = new jobListData($row);
+        }
+        return $jobList;
+
+    }
+
+
+    public function getJobListDataById($id)
+    {
+        // Prepare the SQL Query
+        $stmt = $this->dbHandle->prepare('SELECT * FROM "JobList" WHERE "userID" = :id');
+        $stmt->execute(['id' => $id]);
         $stmt->execute();
         // Fetch all rows as array
         $jobList = [];
