@@ -1,6 +1,6 @@
 <?php require_once ("template/header.phtml"); ?>
+<h1>Added placements</h1>
     <div class="col-md-9">
-        <h5 class="mb-3">Added placements</h5>
         <ul class="list-group">
             <?php if (isset($view->jobListData)): ?>
                 <?php foreach ($view->jobListData as $job): ?>
@@ -12,13 +12,13 @@
                         <p class="mb-1"><strong>Skills Required:</strong> <?= htmlspecialchars($view->skill[$job->getSkills()]); ?></p>
                         <p class="mb-1"><strong>Start Date:</strong> <?= htmlspecialchars($job->getStartDate()); ?></p>
                         <p class="mb-1"><strong>End Date:</strong> <?= htmlspecialchars($job->getEndDate()); ?></p>
-                        <a href="../Controller/myListings.php" class="btn btn-primary btn-sm mt-2">Apply</a>
+
                     </li>
                 <?php endforeach; ?>
             <?php endif; ?>
         </ul>
+        <a href="../Controller/addPlacement.php" class="btn btn-primary btn-sm mt-2">Add new Placement</a>
     </div>
-
 
 
 <?php require_once ("template/footer.phtml"); ?>
