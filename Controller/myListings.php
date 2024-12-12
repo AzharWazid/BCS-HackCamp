@@ -18,4 +18,4 @@ if ($_SESSION["userType"] == "3")
     }
 }
 
-require_once ("../View/myListingsView.php");
+require_once ("../View/myListings.phtml");
