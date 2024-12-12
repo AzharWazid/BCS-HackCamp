@@ -1,4 +1,5 @@
-<?php require_once ("template/header.phtml");?>
+<?php require_once("template/header.phtml"); ?>
+<head>
     <style>
         .yellow-card-job-list {
             border-left: 5px solid #ffc107;
@@ -6,37 +7,74 @@
             background-color: #fffbea;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .job-listings-container {
-            margin-top: 0;
-        }
-        h2, h5 {
+
+        .yellow-card-job-list h5 {
             font-weight: bold;
+            color: #333;
+        }
+
+        .yellow-card-job-list p {
+            margin-bottom: 10px;
+        }
+
+        .yellow-card-job-list strong {
+            color: #555;
+        }
+
+        .job-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-add-placement {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+
+        .no-placements-message {
+            color: #777;
+            font-style: italic;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
-    <h1>Added Placements</h1>
-    <div class="col-md-9">
+</head>
+<body>
+<div class="container my-5 job-container">
+    <div class="job-header">
+        <h1>Added Placements</h1>
+        <a href="../Controller/addPlacement.php" class="btn btn-primary btn-add-placement">Add New Placement</a>
+    </div>
+    <div class="col-md-12">
         <ul class="list-group">
-            <?php if (isset($view->jobListDataSet)): ?>
+            <?php if (isset($view->jobListDataSet) && !empty($view->jobListDataSet)): ?>
                 <?php foreach ($view->jobListDataSet as $job): ?>
                     <?php if ($job->getUserId() == $_SESSION['id']): ?>
                         <li class="list-group-item p-3 mb-3 yellow-card-job-list">
                             <h5 class="mb-2"><?= htmlspecialchars($job->getTitle()); ?></h5>
                             <p class="text-muted mb-1"><?= htmlspecialchars($job->getDescription()); ?></p>
-                            <p class="mb-1"><strong>Salary:</strong> <?= htmlspecialchars($job->getSalary()); ?></p>
+                            <p class="mb-1"><strong>Salary:</strong> £<?= htmlspecialchars($job->getSalary()); ?></p>
                             <p class="mb-1"><strong>Location:</strong> <?= htmlspecialchars($job->getLocation()); ?></p>
-                            <p class="mb-1"><strong>Skills Required:</strong> <?= htmlspecialchars($view->skill[$job->getSkills()]); ?></p>
+                            <p class="mb-1"><strong>Skills Required:</strong> <?= htmlspecialchars($view->skill[$job->getSkills()] ?? 'Not specified'); ?></p>
                             <p class="mb-1"><strong>Start Date:</strong> <?= htmlspecialchars($job->getStartDate()); ?></p>
                             <p class="mb-1"><strong>End Date:</strong> <?= htmlspecialchars($job->getEndDate()); ?></p>
                         </li>
-
-                        <?php endif; ?>
+                    <?php endif; ?>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p>No placements available for your account.</p>
+                <p class="no-placements-message">No placements available for your account.</p>
             <?php endif; ?>
         </ul>
-        <a href="../Controller/addPlacement.php" class="btn btn-primary btn-sm mt-2">Add new Placement</a>
     </div>
-
-
-<?php require_once ("template/footer.phtml"); ?>
+</div>
+<?php require_once("template/footer.phtml"); ?>
+</body>
