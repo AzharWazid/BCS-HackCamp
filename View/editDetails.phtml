@@ -1,7 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 require_once('template/header.phtml');
 
 // Debug to confirm the page is loaded
@@ -9,9 +6,9 @@ require_once('template/header.phtml');
 
 // Load user details from session or database
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
-$address = isset($_SESSION['address']) ? $_SESSION['address'] : '';
-$phone = isset($_SESSION['phone']) ? $_SESSION['phone'] : '';
-$dob = isset($_SESSION['dob']) ? $_SESSION['dob'] : '';
+$address = isset($_POST['address']) ? $_POST['address'] : '';
+$phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+$dob = isset($_POST['dob']) ? $_POST['dob'] : '';
 ?>
 
     <body>
