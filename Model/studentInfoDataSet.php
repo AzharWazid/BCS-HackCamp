@@ -20,12 +20,11 @@ class studentInfoDataSet{
         //ensures the file type is pdf
         $validFileExtensions = ['application/pdf'];
         if(!in_array($cv["type"], $validFileExtensions)){
-            echo 'type error';
-            return false;
+            throw new Exception('Invalid file type. Only PDF files are allowed.');
         }
 
         //path to user folder
-        $uploadDir = 'CV Uploads/user_' . $userId;
+        $uploadDir = '../CV Uploads/user_' . $userId;
         //checks if user folder exists
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
@@ -79,5 +78,37 @@ class studentInfoDataSet{
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result['count'];
+    }
+
+    public function updateStudentCV($userInfoId, $cv){
+        try {
+            $sql = 'SELECT "CV" FROM "StudentInfo" WHERE "userInfo" = :id';
+            $stmt = $this->dbHandle->prepare($sql);
+            $stmt->bindParam(':id', $userInfoId);
+            $stmt->execute();
+            $oldCVPath = $stmt->fetchColumn(); // Fetches the "cv" column value
+
+            // Delete the old CV file if it exists
+            if ($oldCVPath && file_exists($oldCVPath)) {
+                unlink($oldCVPath); // Deletes the file from the server
+            }
+
+            $cvPath = $this->storeStudentCV($userInfoId, $cv);
+            $this->dbHandle->beginTransaction();
+            $sql = 'UPDATE "StudentInfo" SET "CV" = :cv WHERE "userInfo" = :id';
+            $stmt = $this->dbHandle->prepare($sql);
+            $stmt->bindParam(':cv', $cvPath);
+            $stmt->bindParam(':id', $userInfoId);
+            $stmt->execute();
+            $this->dbHandle->commit();
+        } catch (Exception $e) {
+            if ($this->dbHandle->inTransaction()) {
+                $this->dbHandle->rollBack();
+            }
+
+            echo "Error: " . $e->getMessage();
+        }
+
+
     }
 }
