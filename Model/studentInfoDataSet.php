@@ -108,8 +108,6 @@ class studentInfoDataSet{
 
             echo "Error: " . $e->getMessage();
         }
-
-
     }
 
     private function resetSequenceIfNecessary()
@@ -147,5 +145,14 @@ class studentInfoDataSet{
         $stmt->bindParam(':category', $category);
         $stmt->bindParam(':level', $level);
         $stmt->execute();
+    }
+
+    public function getStudentCV($userInfoId){
+        $sql = 'SELECT "CV" FROM "StudentInfo" WHERE "userInfo" = :id';
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(':id', $userInfoId);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['CV'];
     }
 }

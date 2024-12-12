@@ -66,18 +66,16 @@ $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
                     </div>
                 </div>
                 <button type="submit" class="btn btn-success w-100 mt-4">Update Details</button>
-            </form>
-
+<?php if(isset($_SESSION['userType']) && $_SESSION['userType'] == 2): ?>
             <!-- CV Upload Section -->
             <h2 class="text-center mt-5">Upload Your CV</h2>
-            <form id="cvForm" onsubmit="uploadCV(event)">
                 <div class="mb-3">
                     <label for="cv_file" class="form-label">CV File</label>
-                    <input type="file" class="form-control" id="cv_file" name="cv_file" accept=".pdf, .doc, .docx" required>
+                    <input type="file" class="form-control" id="cv_file" name="cv_file" accept=".pdf" required>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Upload CV</button>
             </form>
-
+<?php endif; ?>
             <!-- Popup Modal -->
             <div id="popupMessage" class="modal" tabindex="-1" role="dialog" style="display:none;">
                 <div class="modal-dialog" role="document">
