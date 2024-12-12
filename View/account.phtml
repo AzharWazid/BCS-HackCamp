@@ -1,7 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 require_once('template/header.phtml');
 ?>
 
@@ -40,6 +37,7 @@ require_once('template/header.phtml');
         <?php endif; ?>
     </div>
 
+    <?php if (isset($_SESSION['userType']) && $_SESSION['userType'] == 2): ?>
     <!-- CV Upload Section -->
     <div class="container mt-4 b-colour">
         <h5>Upload Your CV</h5>
@@ -60,12 +58,13 @@ require_once('template/header.phtml');
             </div>
         <?php endif; ?>
     </div>
+    <?php endif;?>
 </div>
 
 <!-- Larger Edit Button -->
 <div id="editButtonContainer" class="text-end me-3">
     <button type="button" class="btn btn-primary"
-            onclick="location.href='../Controller/updateDetails.php';"
+            onclick="location.href='../Controller/editDetails.php';"
             style="--bs-btn-padding-y: 1rem; --bs-btn-padding-x: 2rem; --bs-btn-font-size: 1.25rem;">
         <i class="fas fa-edit"></i> Edit
     </button>

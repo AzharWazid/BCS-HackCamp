@@ -1,7 +1,4 @@
 <?php require_once("template/header.phtml"); ?>
-
-    <!DOCTYPE html>
-    <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +33,9 @@
             <div class="col-md-9">
                 <h5 class="mb-3">Available Placements</h5>
                 <ul class="list-group">
+                    <?php if (isset($view->jobListData)): ?>
                     <?php foreach ($view->jobListData as $job): ?>
-                        <li class="list-group-item yellow-card-job-list p-3 mb-3">
+                        <li class="list-group-item p-3 mb-3 yellow-card-job-list">
                             <h5 class="mb-2"><?= htmlspecialchars($job->getTitle()); ?></h5>
                             <p class="text-muted mb-1"><?= htmlspecialchars($job->getDescription()); ?></p>
                             <p class="mb-1"><strong>Salary:</strong> <?= htmlspecialchars($job->getSalary()); ?></p>
@@ -48,6 +46,7 @@
                             <a href="../Controller/placementInfo.php" class="btn btn-primary btn-sm mt-2">Apply</a>
                         </li>
                     <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
@@ -91,6 +90,5 @@
         document.addEventListener("DOMContentLoaded", populateFilters);
     </script>
     </body>
-    </html>
 
 <?php require_once("template/footer.phtml"); ?>
