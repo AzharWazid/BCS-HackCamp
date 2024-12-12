@@ -14,7 +14,7 @@ $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
     <body>
 <div class="container mt-5 b-colour">
     <h1 class="text-center">Edit Your Details</h1>
-    <form action="/Controller/editDetails.php" method="POST">
+    <form action="/Controller/editDetails.php" method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
@@ -32,14 +32,12 @@ $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
             <input type="date" class="form-control" id="dob" name="dob" value="<?php echo htmlspecialchars($dob); ?>" required>
         </div>
         <button type="submit" class="btn btn-success w-100">Update Details</button>
-    </form>
 
     <!-- CV Upload Form -->
     <h2 class="text-center mt-5 b-colour">Upload Your CV</h2>
-    <form id="cvForm" onsubmit="uploadCV(event)">
         <div class="mb-3">
             <label for="cv_file" class="form-label">CV File</label>
-            <input type="file" class="form-control" id="cv_file" name="cv_file" accept=".pdf, .doc, .docx" required>
+            <input type="file" class="form-control" id="cv_file" name="cv_file" accept=".pdf" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Upload CV</button>
     </form>
