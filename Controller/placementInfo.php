@@ -1,4 +1,8 @@
-<?php require_once('../View/placementInfo.phtml');
+<?php
+require_once('../View/placementInfo.phtml');
+require_once('../Model/jobListDataSet.php');
+require_once('../Model/Skill.php');
+require_once('../Model/jobListData.php');
 
 session_start();
 

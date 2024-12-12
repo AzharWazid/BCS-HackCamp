@@ -1,6 +1,7 @@
 <?php require_once("template/header.phtml"); ?>
     <div class="container my-5">
         <div class="placement-details bg-light p-4 rounded shadow b-colour">
+            <?php if (isset($view->jobListData)): ?>
             <?php foreach ($view->jobListData as $job): ?>
             <h1 class="mb-4 text-center">Placement Details</h1>
             <h2 class="text-primary"><?= htmlspecialchars($job->getTitle()); ?></h2>
@@ -11,6 +12,7 @@
             <p><strong>Start Date:</strong><?= htmlspecialchars($job->getStartDate()); ?></p>
             <p><strong>End Date:</strong><?= htmlspecialchars($job->getEndDate()); ?></p>
             <?php endforeach; ?>
+            <?php endif; ?>
 
             <p class="mt-4"><strong>Additional Responsibilities:</strong></p>
             <ul class="list-group mb-4">
@@ -20,6 +22,8 @@
                 <li class="list-group-item">Stay up-to-date with industry trends and best practices.</li>
             </ul>
 
+            <?php if (isset($view->jobListData)): ?>
+            <?php foreach ($view->jobListData as $job): ?>
             <p><strong>Preferred Qualifications:</strong></p>
             <ul class="list-group mb-4">
                 <li class="list-group-item"><?= htmlspecialchars($view->skill[$job->getSkills()]); ?></li>
@@ -27,6 +31,8 @@
                 <li class="list-group-item">Strong understanding of database systems (SQL, NoSQL).</li>
                 <li class="list-group-item">Familiarity with version control systems such as Git.</li>
             </ul>
+            <?php endforeach; ?>
+            <?php endif; ?>
 
             <!-- Buttons Section -->
             <div class="text-center">
