@@ -16,6 +16,9 @@ if ($_SESSION["userType"] == "2") {
     if ($studentInfoDataSet->validateStudentInfo($view->userInfoDataSet->getId()) >= 1) {
         $view->studentInfoDataSet = $studentInfoDataSet->getStudentInfo($view->userInfoDataSet->getID());
     }
+    else{
+        header("location:registerPage2.php");
+    }
 }
 
 
@@ -31,6 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userDataSet->updateUserData($userId, $email);
         $UserInfoDataSet->updateUserInfo($address, $phone, $dob, $userId);
         $_SESSION['email'] = $email;
+        if(isset($_FILES['cv_file']) && $_FILES['cv_file'] != null) {
+            $studentInfoDataSet->updateStudentCV($view->userInfoDataSet->getId(), $_FILES['cv_file']);
+
+        }
         header('Location: account.php');
     }
     else{
