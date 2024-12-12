@@ -1,6 +1,39 @@
 <?php require_once ("template/header.phtml"); ?>
 
-
+<div class="container mt-5 b-colour">
+    <h1 class="text-center">Add New Placement</h1>
+    <form action="/Controller/addPlacement.php" method="POST">
+        <div class="mb-3">
+            <label for="placementName" class="form-label">Name of Placement</label>
+            <input type="text" class="form-control" id="placementName" name="placementName" required>
+        </div>
+        <div class="mb-3">
+            <label for="salary" class="form-label">Salary</label>
+            <input type="number" class="form-control" id="salary" name="salary" required>
+        </div>
+        <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" class="form-control" id="startDate" name="startDate" required>
+        </div>
+        <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" class="form-control" id="endDate" name="endDate" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="skillsNeeded" class="form-label">Skills Needed</label>
+            <textarea class="form-control" id="skillsNeeded" name="skillsNeeded" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="responsibilities" class="form-label">Responsibilities</label>
+            <textarea class="form-control" id="responsibilities" name="responsibilities" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Add Placement</button>
+    </form>
+</div>
 
 
 
