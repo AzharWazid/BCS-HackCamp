@@ -2,7 +2,7 @@
 session_start();
 
 // Define the directory where CVs will be stored
-$uploadDir = '../CV Uploads/'; // Adjust to match your project's directory structure
+$uploadDir = '../CV_Uploads/'; // Adjust to match your project's directory structure
 
 // Ensure the directory exists
 if (!is_dir($uploadDir)) {

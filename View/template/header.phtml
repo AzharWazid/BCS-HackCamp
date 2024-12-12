@@ -73,6 +73,10 @@ if(session_status() == PHP_SESSION_NONE){
                             <li><a class="dropdown-item" onclick="location.href='/Controller/registerPage1.php';">Register</a></li>
                         <?php else: ?>
                             <li><a class="dropdown-item" onclick="location.href='/Controller/account.php';">Account</a></li>
+                            <?php if(isset($_SESSION['userType']) && $_SESSION['userType'] == 3): ?>
+                                <li><a class="dropdown-item" onclick="location.href='/Controller/myListings.php';">View My Listings</a></li>
+                                <li><a class="dropdown-item" onclick="location.href='/Controller/addPlacement.php';">Add Listing</a></li>
+                            <?php endif; ?>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" onclick="location.href='/Controller/logout.php';">Logout</a></li>
                         <?php endif; ?>
