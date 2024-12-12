@@ -2,6 +2,7 @@
 
 require_once("../Model/userInfoDataSet.php");
 require_once("../Model/studentInfoDataSet.php");
+require_once("../Model/jobListDataSet.php");
 
 session_start();
 
@@ -18,4 +19,4 @@ if ($_SESSION["userType"] == "3")
     }
 }
 
-require_once ("../View/myListingsView.php");
+require_once ("../View/myListings.phtml");
