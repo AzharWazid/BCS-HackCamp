@@ -24,7 +24,7 @@ class studentInfoDataSet{
         }
 
         //path to user folder
-        $uploadDir = '../CV Uploads/user_' . $userId;
+        $uploadDir = '../CV_Uploads/user_' . $userId;
         //checks if user folder exists
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
