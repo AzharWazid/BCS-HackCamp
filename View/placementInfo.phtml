@@ -1,14 +1,16 @@
 <?php require_once("template/header.phtml"); ?>
     <div class="container my-5">
         <div class="placement-details bg-light p-4 rounded shadow b-colour">
+            <?php foreach ($view->jobListData as $job): ?>
             <h1 class="mb-4 text-center">Placement Details</h1>
-            <h2 class="text-primary">Software Engineer</h2>
-            <p><strong>Description:</strong> Develop and maintain web applications, ensuring high performance and responsiveness. Collaborate with cross-functional teams to define, design, and ship new features. Troubleshoot, debug, and upgrade existing systems.</p>
-            <p><strong>Salary:</strong> <span class="text-success">$85,000</span></p>
-            <p><strong>Location:</strong> New York, NY</p>
-            <p><strong>Skills Required:</strong> Data Management, Backend Development, Frontend Development, Team Collaboration, and Problem-Solving.</p>
-            <p><strong>Start Date:</strong> 2024-01-01</p>
-            <p><strong>End Date:</strong> 2024-12-31</p>
+            <h2 class="text-primary"><?= htmlspecialchars($job->getTitle()); ?></h2>
+            <p><strong>Description:</strong><?= htmlspecialchars($job->getDescription()); ?> </p>
+            <p><strong>Salary:</strong> <span class="text-success">$<?= htmlspecialchars($job->getSalary()); ?></span></p>
+            <p><strong>Location:</strong><?= htmlspecialchars($job->getLocation()); ?></p>
+            <p><strong>Skills Required:</strong><?= htmlspecialchars($view->skill[$job->getSkills()]); ?> </p>
+            <p><strong>Start Date:</strong><?= htmlspecialchars($job->getStartDate()); ?></p>
+            <p><strong>End Date:</strong><?= htmlspecialchars($job->getEndDate()); ?></p>
+            <?php endforeach; ?>
 
             <p class="mt-4"><strong>Additional Responsibilities:</strong></p>
             <ul class="list-group mb-4">
@@ -20,7 +22,7 @@
 
             <p><strong>Preferred Qualifications:</strong></p>
             <ul class="list-group mb-4">
-                <li class="list-group-item">Bachelor’s degree in Computer Science or a related field.</li>
+                <li class="list-group-item"><?= htmlspecialchars($view->skill[$job->getSkills()]); ?></li>
                 <li class="list-group-item">Experience with JavaScript, Python, and modern frameworks (React, Django, etc.).</li>
                 <li class="list-group-item">Strong understanding of database systems (SQL, NoSQL).</li>
                 <li class="list-group-item">Familiarity with version control systems such as Git.</li>
