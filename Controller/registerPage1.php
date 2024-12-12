@@ -7,7 +7,8 @@ $userData = new userDataSet();
 $userInfoData = new userInfoDataSet();
 
 // Include the login view (HTML form)
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
     $name = $_POST['first_name'] . " " . $_POST['last_name'];
     $email = $_POST['email'];
     $dobYMD = $_POST['dob'];
@@ -19,19 +20,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //var_dump($email);
     //var_dump($address);
 
-    if($userData->verifyUserEmail($email)){
+    if($userData->verifyUserEmail($email))
+    {
         $userData->addUserData($name, $email, $password, $userTypes);
         $userID = $userData->getUserIdByEmail($email);
         $userInfoData->setUserInfo($address, $phoneNumber, $dobYMD, $userID, null);
 
-        if($userTypes == "student"){
+        if($userTypes == "student")
+        {
             header("location: registerPage2.php");
         }
         else{
             header("location: login.php");
         }
     }
-    else{
+    else
+    {
         echo "Email is already in use";
     }
 }
