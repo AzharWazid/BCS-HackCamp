@@ -43,7 +43,10 @@
                             <p class="mb-1"><strong>Skills Required:</strong> <?= htmlspecialchars($view->skill[$job->getSkills()]); ?></p>
                             <p class="mb-1"><strong>Start Date:</strong> <?= htmlspecialchars($job->getStartDate()); ?></p>
                             <p class="mb-1"><strong>End Date:</strong> <?= htmlspecialchars($job->getEndDate()); ?></p>
-                            <a href="../Controller/placementInfo.php" class="btn btn-primary btn-sm mt-2">Apply</a>
+                            <form method="POST" action="../Controller/placementInfo.php">
+                                <input type="hidden" name="job-id" value="<?php echo htmlspecialchars($job->getJobId());?>">
+                                <button class="btn btn-primary btn-sm mt-2">Apply</button>
+                            </form>
                         </li>
                     <?php endforeach; ?>
                     <?php endif; ?>
