@@ -17,6 +17,7 @@ if(session_status() == PHP_SESSION_NONE){
         /* Ensure consistent cursor style for links */
         .nav-link {
             cursor: pointer;
+            margin-right: 15px; /* Add spacing between nav items */
         }
 
         /* Change options to blue on hover */
@@ -51,7 +52,7 @@ if(session_status() == PHP_SESSION_NONE){
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/index.php">Home</a>
                 </li>
