@@ -67,4 +67,18 @@ class userInfoDataSet{
             $stmt->execute();
         }
     }
+
+    public function updateUserInfo($address, $phoneNumber, $dobYMD, $userID){
+        $sql = 'UPDATE "UserInfo" 
+            SET "address" = :address, 
+                "phoneNumber" = :phoneNumber, 
+                "dobYMD" = :dob
+            WHERE "userID" = :userID';
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(":address", $address, PDO::PARAM_STR);
+        $stmt->bindParam(":phoneNumber", $phoneNumber, PDO::PARAM_STR);
+        $stmt->bindParam(":dob", $dobYMD, PDO::PARAM_STR);
+        $stmt->bindParam(":userID", $userID, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }

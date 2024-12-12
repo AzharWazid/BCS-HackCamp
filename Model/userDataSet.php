@@ -138,6 +138,14 @@ class userDataSet
         }
     }
 
+    public function updateUserData($id, $email){
+        $sql = "UPDATE \"Users\" SET \"email\" = :email WHERE \"ID\" = :id";
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+    }
+
     // Example usage for user validation (Cut and paste this where it's needed)
 //    try
 //    {
