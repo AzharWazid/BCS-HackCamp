@@ -1,0 +1,24 @@
+<?php require_once ("template/header.phtml"); ?>
+<h1>Added placements</h1>
+    <div class="col-md-9">
+        <ul class="list-group">
+            <?php if (isset($view->jobListData)): ?>
+                <?php foreach ($view->jobListData as $job): ?>
+                    <li class="list-group-item p-3 mb-3 yellow-card-job-list">
+                        <h5 class="mb-2"><?= htmlspecialchars($job->getTitle()); ?></h5>
+                        <p class="text-muted mb-1"><?= htmlspecialchars($job->getDescription()); ?></p>
+                        <p class="mb-1"><strong>Salary:</strong> <?= htmlspecialchars($job->getSalary()); ?></p>
+                        <p class="mb-1"><strong>Location:</strong> <?= htmlspecialchars($job->getLocation()); ?></p>
+                        <p class="mb-1"><strong>Skills Required:</strong> <?= htmlspecialchars($view->skill[$job->getSkills()]); ?></p>
+                        <p class="mb-1"><strong>Start Date:</strong> <?= htmlspecialchars($job->getStartDate()); ?></p>
+                        <p class="mb-1"><strong>End Date:</strong> <?= htmlspecialchars($job->getEndDate()); ?></p>
+
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </ul>
+        <a href="../Controller/addPlacement.php" class="btn btn-primary btn-sm mt-2">Add new Placement</a>
+    </div>
+
+
+<?php require_once ("template/footer.phtml"); ?>

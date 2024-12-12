@@ -108,7 +108,51 @@ class studentInfoDataSet{
 
             echo "Error: " . $e->getMessage();
         }
+    }
 
+    private function resetSequenceIfNecessary()
+    {
+        // Check if the sequence is out of sync with the table
+        // Get the current maximum ID value
+        $SQL = 'SELECT MAX("UniqueID") FROM "StudentInfo"';
+        $stmt = $this->dbHandle->query($SQL);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Get the max ID
+        $maxId = $result['max'];
+
+        // Check if the current sequence value is lower than the max ID
+        $SQL = 'SELECT last_value FROM "StudentInfo_ID_seq"';
+        $stmt = $this->dbHandle->query($SQL);
+        $sequence = $stmt->fetch(PDO::FETCH_ASSOC);
+        $lastValue = $sequence['last_value'];
+
+        // If the sequence is less than the max ID, reset the sequence
+        if ($lastValue <= $maxId)
+        {
+            $SQL = 'SELECT setval(pg_get_serial_sequence(\'"StudentInfo\', \'UniqueID\'), :maxId)';
+            $stmt = $this->dbHandle->prepare($SQL);
+            $stmt->bindParam(':maxId', $maxId, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+    }
+    public function addStudentSkills($skills, $category, $level)
+    {
+        $this->resetSequenceIfNecessary();
+        $SQL = 'INSERT INTO "StudentInfo" (skills, category, level) VALUES (:skills, :category, :level)';
+        $stmt = $this->dbHandle->prepare($SQL);
+        $stmt->bindParam(':skills', $skills);
+        $stmt->bindParam(':category', $category);
+        $stmt->bindParam(':level', $level);
+        $stmt->execute();
+    }
+
+    public function getStudentCV($userInfoId){
+        $sql = 'SELECT "CV" FROM "StudentInfo" WHERE "userInfo" = :id';
+        $stmt = $this->dbHandle->prepare($sql);
+        $stmt->bindParam(':id', $userInfoId);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['CV'];
     }
 }
