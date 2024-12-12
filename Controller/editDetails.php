@@ -24,10 +24,10 @@ if ($_SESSION["userType"] == "2") {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the values
-    $address = $_POST['address'];
-    $phone = $_POST['phone'];
-    $dob = $_POST['dob'];
-    $email = $_POST['email'];
+    $address = trim($_POST['address']);
+    $phone = trim($_POST['phone']);
+    $dob = trim($_POST['dob']);
+    $email = trim($_POST['email']);
 
     // Update in database
     if($userDataSet->verifyUserEmail($email) || $email == $_SESSION['email']) {
@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['email'] = $email;
         if(isset($_FILES['cv_file']) && $_FILES['cv_file'] != null) {
             $studentInfoDataSet->updateStudentCV($view->userInfoDataSet->getId(), $_FILES['cv_file']);
-
         }
         header('Location: account.php');
     }
