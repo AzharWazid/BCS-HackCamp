@@ -90,7 +90,7 @@ class userDataSet
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        var_dump($result);
+        //var_dump($result);
 
         if ($result["count"] <= 0){
             var_dump($result);
