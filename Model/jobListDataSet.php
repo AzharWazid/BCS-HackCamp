@@ -31,7 +31,7 @@ class jobListDataSet
     public function getJobListDataById($id)
     {
         // Prepare the SQL Query
-        $stmt = $this->dbHandle->prepare('SELECT * FROM "JobList" WHERE "userID" = :id');
+        $stmt = $this->dbHandle->prepare('SELECT * FROM "JobList" WHERE "UniqueID" = :id');
         $stmt->execute(['id' => $id]);
         $stmt->execute();
         // Fetch all rows as array
