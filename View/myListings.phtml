@@ -68,6 +68,13 @@
                             <p class="mb-1"><strong>Start Date:</strong> <?= htmlspecialchars($job->getStartDate()); ?></p>
                             <p class="mb-1"><strong>End Date:</strong> <?= htmlspecialchars($job->getEndDate()); ?></p>
                         </li>
+                        <!-- Form for delete action -->
+                        <form action="../Controller/deletePlacement.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="applicant_id" value="<?= htmlspecialchars($applicant['id']); ?>">
+                            <button type="submit" class="btn-red btn-sm" onclick="return confirm('Are you sure you want to delete this placement?');">
+                                Delete
+                            </button>
+                        </form>
                     <?php endif; ?>
                 <?php endforeach; ?>
             <?php else: ?>

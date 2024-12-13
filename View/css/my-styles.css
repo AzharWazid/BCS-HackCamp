@@ -118,6 +118,12 @@ body {
     border: none;
 }
 
+.btn-red {
+    background-color: red;
+    color: white;
+
+}
+
 .btn:hover {
     background-color: #0B5ED7 !important;
 }
