@@ -37,7 +37,7 @@ class studentInfoDataSet{
             return $filePath;
         }
         else{
-            echo 'dir upload error';
+            echo "<div class='alert alert-danger mt-3' role='alert'>Failed to upload CV. Please try again.</div>";
             return false;
         }
     }

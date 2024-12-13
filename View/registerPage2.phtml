@@ -66,7 +66,7 @@
             <h3>Upload Your CV</h3>
             <div class="mb-3">
                 <label for="cvUpload" class="form-label">Upload CV</label>
-                <input class="form-control" type="file" id="cvUpload" name="cv_file" accept=".pdf,.doc,.docx" >
+                <input class="form-control" type="file" id="cvUpload" name="cv_file" accept=".pdf" >
             </div>
         </div>
 
@@ -141,45 +141,7 @@
         });
     </script>
 
-    <?php
-    // Handle form submission
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-        // Handle CV upload
-        if (isset($_FILES['cv_file'])) {
-            $uploadDir = 'uploads/';
-            if (!is_dir($uploadDir)) {
-                mkdir($uploadDir, 0777, true);
-            }
 
-            $cvFile = $uploadDir . basename($_FILES['cv_file']['name']);
-
-            if (move_uploaded_file($_FILES['cv_file']['tmp_name'], $cvFile)) {
-                echo "<div class='alert alert-success mt-3' role='alert'>CV uploaded successfully!</div>";
-                $_SESSION['uploaded_cv'] = $cvFile;
-            } else {
-                echo "<div class='alert alert-danger mt-3' role='alert'>Failed to upload CV. Please try again.</div>";
-            }
-        }
-
-        // Process selected skills
-        if (isset($_POST['skills'])) {
-            $selectedSkills = $_POST['skills'];
-            echo "<div class='alert alert-info mt-3' role='alert'>Skills selected: " . implode(', ', $selectedSkills) . "</div>";
-        }
-
-        // Process selected categories
-        if (isset($_POST['categories'])) {
-            $selectedCategories = $_POST['categories'];
-            echo "<div class='alert alert-info mt-3' role='alert'>Categories selected: " . implode(', ', $selectedCategories) . "</div>";
-        }
-
-        // Process selected levels
-        if (isset($_POST['levels'])) {
-            $selectedLevels = $_POST['levels'];
-            echo "<div class='alert alert-info mt-3' role='alert'>Levels selected: " . implode(', ', $selectedLevels) . "</div>";
-        }
-    }
-    ?>
 </div>
 
 <?php require_once("template/footer.phtml"); ?>
