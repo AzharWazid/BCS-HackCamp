@@ -40,6 +40,18 @@ class jobListDataSet
 
     }
 
+    public function getJobListDataByCount($id)
+    {
+        // Prepare the SQL Query
+        $stmt = $this->dbHandle->prepare('SELECT COUNT(*) FROM "JobList" WHERE "UniqueID" = :id');
+        $stmt->execute(['id' => $id]);
+        $stmt->execute();
+        // Fetch all rows as array
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result["count"];
+
+    }
+
     public function addJobList($title, $salary, $startDate, $endDate, $description, $skills, $location, $category, $level, $userID){
         $sql = 'INSERT INTO "JobList" ("title", "salary", "startDate", "endDate", "description", "skills", "location", "category", "level", "userID") 
                 VALUES (:title, :salary, :startDate, :endDate, :description, :skills, :location, :category, :level, :userID)';

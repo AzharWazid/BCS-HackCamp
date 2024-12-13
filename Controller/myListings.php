@@ -17,7 +17,7 @@ $view->skill = $skill->skillAssign();
 if ($_SESSION["userType"] == "3")
 {
     $jobListDataSet = new JobListDataSet();
-    if ($jobListDataSet->getJobListDataById($_SESSION['id']) >= 1){
+    if ($jobListDataSet->getJobListDataByCount($_SESSION['id']) >= 1){
         $view->jobListDataSet = $jobListDataSet->getJobListDataById($_SESSION['id']);
         //var_dump($jobListDataSet->getJobListDataById($_SESSION['id']));
     }
