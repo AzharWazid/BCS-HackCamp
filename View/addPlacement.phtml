@@ -1,54 +1,193 @@
-<?php require_once("template/header.phtml"); ?>
+<?php require_once ("template/header.phtml"); ?>
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card shadow-lg border-0">
-                    <div class="card-header text-center" style="background-color: #BDCF03; color: #fff;">
-                        <h2 class="mb-0 b-colour">Add New Placement</h2>
-                    </div>
-                    <div class="card-body p-5">
-                        <form action="../Controller/addPlacement.php" method="POST">
-                            <div class="mb-4">
-                                <label for="placementName" class="form-label">Name of Placement</label>
-                                <input type="text" class="form-control rounded-pill" id="placementName" name="placementName" placeholder="Enter placement name" required>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card shadow-lg border-0">
+                <div class="card-header text-center" style="background-color: #BDCF03; color: #fff;">
+                    <h2 class="mb-0 b-colour">Add New Placement</h2>
+                </div>
+                <div class="card-body p-5">
+                    <form action="../Controller/addPlacement.php" method="POST">
+                        <div class="mb-4">
+                            <label for="placementName" class="form-label">Name of Placement</label>
+                            <input type="text" class="form-control rounded-pill" id="placementName" name="placementName" placeholder="Enter placement name" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="salary" class="form-label">Salary</label>
+                            <input type="number" class="form-control rounded-pill" id="salary" name="salary" placeholder="Enter salary" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control rounded-pill" id="location" name="location" placeholder="Enter location" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <label for="startDate" class="form-label">Start Date</label>
+                                <input type="date" class="form-control rounded-pill" id="startDate" name="startDate" required>
                             </div>
-                            <div class="mb-4">
-                                <label for="salary" class="form-label">Salary</label>
-                                <input type="number" class="form-control rounded-pill" id="salary" name="salary" placeholder="Enter salary" required>
+                            <div class="col-md-6 mb-4">
+                                <label for="endDate" class="form-label">End Date</label>
+                                <input type="date" class="form-control rounded-pill" id="endDate" name="endDate" required>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <label for="startDate" class="form-label">Start Date</label>
-                                    <input type="date" class="form-control rounded-pill" id="startDate" name="startDate" required>
-                                </div>
-                                <div class="col-md-6 mb-4">
-                                    <label for="endDate" class="form-label">End Date</label>
-                                    <input type="date" class="form-control rounded-pill" id="endDate" name="endDate" required>
-                                </div>
-                            </div>
-                            <div class="mb-4">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control rounded" id="description" name="description" rows="4" placeholder="Enter placement description" required></textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label for="skillsNeeded" class="form-label">Skills Needed</label>
-                                <textarea class="form-control rounded" id="skillsNeeded" name="skillsNeeded" rows="3" placeholder="Enter skills needed" required></textarea>
-                            </div>
-                            <div class="mb-4">
-                                <label for="responsibilities" class="form-label">Responsibilities</label>
-                                <textarea class="form-control rounded" id="responsibilities" name="responsibilities" rows="4" placeholder="Enter responsibilities" required></textarea>
-                            </div>
-                            <div class="d-flex gap-3">
-                                <button type="submit" class="btn btn-success py-3 rounded-pill flex-grow-1">Add Placement</button>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control rounded" id="description" name="description" rows="4" placeholder="Enter placement description" required></textarea>
+                        </div>
+                        <div class="mb-4">
+                            <label for="skillsNeeded" class="form-label">Skills Needed</label>
+                            <form action="registerPage2.phtml" method="POST" enctype="multipart/form-data">
+                                <!-- Dynamic Dropdown Section -->
+                                <div id="dynamic-dropdown-section">
+                                    <div class="row mb-3">
+                                        <!-- Skills Dropdown -->
+                                        <div class="col-md-4">
+                                            <label for="skills-1" class="form-label">Skills</label>
+                                            <select class="form-select" id="skills-1" name="skills[]">
+                                                <option value="">Select a skill</option>
+                                                <option value="Data Management">Data Management</option>
+                                                <option value="Digital Forensics">Digital Forensics</option>
+                                                <option value="Employee Experience">Employee Experience</option>
+                                                <option value="High Performance Computing">High-Performance Computing</option>
+                                                <option value="Innovation">Innovation</option>
+                                                <option value="IT Infrastructure">IT Infrastructure</option>
+                                                <option value="Machine Learning">Machine Learning</option>
+                                                <option value="Methods and Tools">Methods and Tools</option>
+                                                <option value="Numerical Analysis">Numerical Analysis</option>
+                                                <option value="Portfolio Management">Portfolio Management</option>
+                                            </select>
+                                        </div>
 
-                    </div>
+                                        <!-- Categories Dropdown -->
+                                        <div class="col-md-4">
+                                            <label for="categories-1" class="form-label">Category</label>
+                                            <select class="form-select" id="categories-1" name="categories[]">
+                                                <option value="">Select a category</option>
+                                                <option value="Computer Science">Computer Science</option>
+                                                <option value="Business">Business</option>
+                                                <option value="Communication Skills">Communication Skills</option>
+                                                <option value="Data Science">Data Science</option>
+                                                <option value="Marketing">Marketing</option>
+                                            </select>
+                                        </div>
+
+                                        <!-- Levels Dropdown -->
+                                        <div class="col-md-4">
+                                            <label for="levels-1" class="form-label">Level</label>
+                                            <select class="form-select" id="levels-1" name="levels[]">
+                                                <option value="">Select a level</option>
+                                                <option value="Level 1">Level 1</option>
+                                                <option value="Level 2">Level 2</option>
+                                                <option value="Level 3">Level 3</option>
+                                                <option value="Level 4">Level 4</option>
+                                                <option value="Level 5">Level 5</option>
+                                                <option value="Level 6">Level 6</option>
+                                                <option value="Level 7">Level 7</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <!-- Add More Button -->
+                        <div class="text-center mb-4">
+                            <button type="button" class="btn btn-secondary" id="add-more">Add More</button>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100 py-3 rounded-pill">Add Placement</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
+<script>
+    let dropdownIndex = 1; // Keep track of dropdown sets
 
-<?php require_once("template/footer.phtml"); ?>
+    document.getElementById('add-more').addEventListener('click', function() {
+        dropdownIndex++;
+        const dynamicSection = document.getElementById('dynamic-dropdown-section');
+
+        // Create a new row
+        const newRow = document.createElement('div');
+        newRow.classList.add('row', 'mb-3');
+
+        // Skills Dropdown
+        newRow.innerHTML += `
+                <div class="col-md-4">
+                    <label for="skills-${dropdownIndex}" class="form-label">Skills</label>
+                    <select class="form-select" id="skills-${dropdownIndex}" name="skills[]">
+                        <option value="">Select a skill</option>
+                        <option value="Data Management">Data Management</option>
+                        <option value="Digital Forensics">Digital Forensics</option>
+                        <option value="Employee Experience">Employee Experience</option>
+                        <option value="High Performance Computing">High-Performance Computing</option>
+                        <option value="Innovation">Innovation</option>
+                        <option value="IT Infrastructure">IT Infrastructure</option>
+                        <option value="Machine Learning">Machine Learning</option>
+                        <option value="Methods and Tools">Methods and Tools</option>
+                        <option value="Numerical Analysis">Numerical Analysis</option>
+                        <option value="Portfolio Management">Portfolio Management</option>
+                    </select>
+                </div>`;
+
+        // Categories Dropdown
+        newRow.innerHTML += `
+                <div class="col-md-4">
+                    <label for="categories-${dropdownIndex}" class="form-label">Category</label>
+                    <select class="form-select" id="categories-${dropdownIndex}" name="categories[]">
+                        <option value="">Select a category</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Business">Business</option>
+                        <option value="Communication Skills">Communication Skills</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Marketing">Marketing</option>
+                    </select>
+                </div>`;
+
+        // Levels Dropdown
+        newRow.innerHTML += `
+                <div class="col-md-4">
+                    <label for="levels-${dropdownIndex}" class="form-label">Level</label>
+                    <select class="form-select" id="levels-${dropdownIndex}" name="levels[]">
+                        <option value="">Select a level</option>
+                        <option value="Level 1">Level 1</option>
+                        <option value="Level 2">Level 2</option>
+                        <option value="Level 3">Level 3</option>
+                        <option value="Level 4">Level 4</option>
+                        <option value="Level 5">Level 5</option>
+                        <option value="Level 6">Level 6</option>
+                        <option value="Level 7">Level 7</option>
+                    </select>
+                </div>`;
+
+        // Append the new row
+        dynamicSection.appendChild(newRow);
+    });
+</script>
+
+<?php
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
+    // Process selected skills
+    if (isset($_POST['skills'])) {
+        $selectedSkills = $_POST['skills'];
+        echo "<div class='alert alert-info mt-3' role='alert'>Skills selected: " . implode(', ', $selectedSkills) . "</div>";
+    }
+
+    // Process selected categories
+    if (isset($_POST['categories'])) {
+        $selectedCategories = $_POST['categories'];
+        echo "<div class='alert alert-info mt-3' role='alert'>Categories selected: " . implode(', ', $selectedCategories) . "</div>";
+    }
+
+    // Process selected levels
+    if (isset($_POST['levels'])) {
+        $selectedLevels = $_POST['levels'];
+        echo "<div class='alert alert-info mt-3' role='alert'>Levels selected: " . implode(', ', $selectedLevels) . "</div>";
+    }
+}
+?>
+</div>
+
+<?php require_once ("template/footer.phtml"); ?>

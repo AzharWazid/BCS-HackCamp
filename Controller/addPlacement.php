@@ -5,22 +5,21 @@ $jobListDataSet = new JobListDataSet();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Sanitize and validate input data
-    $title = htmlspecialchars(trim($_POST['placementName'])); // Maps to 'title'
+    $title = trim($_POST['placementName']); // Maps to 'title'
+   // $company = htmlspecialchars(trim($_POST['company']));
     $salary = filter_var($_POST['salary'], FILTER_VALIDATE_INT); // Maps to 'salary'
     $startDate = $_POST['startDate']; // Maps to 'startDate'
     $endDate = $_POST['endDate']; // Maps to 'endDate'
-    $description = htmlspecialchars(trim($_POST['description'])); // Maps to 'description'
-    $skills = htmlspecialchars(trim($_POST['skillsNeeded'])); // Maps to 'skills'
-    $location = "Default Location"; // Example, should come from form or default value
-    $category = 1; // Example, should come from form or default value
-    $level = 1; // Example, should come from form or default value
-    $userID = 1; // Example, should come from session or context
+    $description = trim($_POST['description']); // Maps to 'description'
+    $skills = $_POST['skills']; // Maps to 'skills'
+    $location = trim($_POST['location']); // Example, should come from form or default value
+    $category = $_POST['categories']; // Example, should come from form or default value
+    $level = $_POST['levels']; // Example, should come from form or default value
 
-    $jobListDataSet->addJobList($title, $salary, $startDate, $endDate, $description, $skills, $location, $category, $level, $userID);
-    header('Location: ../placement.php');
+//    $jobListDataSet->addJobList($title, $salary, $startDate, $endDate, $description, $skills, $location, $category, $level, $_SESSION['id']);
+//    header('Location: ../placement.php');
+    var_dump($skills);
 
 }
-
-
 
 require_once ('../View/addPlacement.phtml');
