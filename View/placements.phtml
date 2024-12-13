@@ -114,7 +114,16 @@
                 <h2 class="mb-3">Job Listings</h2>
                 <?php if (isset($view->jobListData) && !empty($view->jobListData)): ?>
                     <div class="row row-cols-1 g-4">
-                        <?php foreach ($view->jobListData as $job): ?>
+                            <?php
+                            $displayedJobs = [];
+                            foreach ($view->jobListData as $job):
+                            $uniqueKey = $job->getTitle() . $job->getLocation();
+                            if (in_array($uniqueKey, $displayedJobs))
+                            {
+                                continue;
+                            }
+                            $displayedJobs[] = $uniqueKey;
+                            ?>
                             <div class="col">
                                 <div class="card yellow-card-job-list h-100">
                                     <div class="card-body">
@@ -133,6 +142,7 @@
                             </div>
                         <?php endforeach; ?>
                     </div>
+
                 <?php else: ?>
                     <p class="text-muted">No job listings are currently available. Please check back later.</p>
                 <?php endif; ?>
