@@ -1,3 +1,2 @@
 <?php
-require_once("../View/viewApplicants.phtml");
-?>
+require_once('../View/viewApplicants.phtml');

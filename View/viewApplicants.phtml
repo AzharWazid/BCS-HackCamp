@@ -1,31 +1,5 @@
-<?php require_once ("template/header.phtml"); ?>
-    <div class="container my-5">
-        <h1 class="mb-4">Applicants for Placement</h1>
+<?php require_once("template/header.phtml"); ?>
 
-        <?php if (!empty($applicants)): ?>
-            <table class="table table-bordered">
-                <thead class="table-light">
-                // dbi
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php foreach ($applicants as $applicant): ?>
-                    <tr>
-                        <td><?= htmlspecialchars($applicant['firstName']); ?></td>
-                        <td><?= htmlspecialchars($applicant['lastName']); ?></td>
-                        <td><?= htmlspecialchars($applicant['email']); ?></td>
-                        <td><?= htmlspecialchars($applicant['phone']); ?></td>
-                    </tr>
-                <?php endforeach; ?>
-                </tbody>
-            </table>
-        <?php else: ?>
-            <p class="text-muted">No applicants found for this placement.</p>
-        <?php endif; ?>
-    </div>
-<?php require_once ("template/footer.phtml"); ?>
+
+
+<?php require_once("template/footer.phtml"); ?>
