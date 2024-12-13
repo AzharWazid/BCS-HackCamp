@@ -2,6 +2,8 @@
 require_once ("../Model/userDataSet.php");
 require_once ("../Model/userInfoDataSet.php");
 
+session_start();
+
 $view = new stdClass();
 $userData = new userDataSet();
 $userInfoData = new userInfoDataSet();
@@ -25,9 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $userData->addUserData($name, $email, $password, $userTypes);
         $userID = $userData->getUserIdByEmail($email);
         $userInfoData->setUserInfo($address, $phoneNumber, $dobYMD, $userID, null);
+        $_SESSION['id'] = $userID;
 
         if($userTypes == "student")
         {
+
             header("location: registerPage2.php");
         }
         else{

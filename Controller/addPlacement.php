@@ -1,6 +1,8 @@
 <?php
 require_once ('../Model/jobListDataSet.php');
 
+session_start();
+
 $jobListDataSet = new JobListDataSet();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,8 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $category = $_POST['categories']; // Example, should come from form or default value
     $level = $_POST['levels']; // Example, should come from form or default value
 
-    $jobListDataSet->addJobList($title, $salary, $startDate, $endDate, $description, $skills, $location, $category, $level, $_SESSION['id']);
-    header('Location: ../placement.php');
+    //$jobListDataSet->addJobList($title, $salary, $startDate, $endDate, $description, $skills, $location, $category, $level, $_SESSION['id']);
+    //header('Location: ../placement.php');
     var_dump($skills);
 
 }

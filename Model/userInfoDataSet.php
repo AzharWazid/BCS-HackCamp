@@ -25,6 +25,7 @@ class userInfoDataSet{
         return null;
     }
 
+
     public function setUserInfo($address, $phoneNumber, $dobYMD, $userID, $additionalInfo)
     {
         $this->resetSequenceIfNecessary();
