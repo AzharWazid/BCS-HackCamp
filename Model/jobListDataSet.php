@@ -35,11 +35,8 @@ class jobListDataSet
         $stmt->execute(['id' => $id]);
         $stmt->execute();
         // Fetch all rows as array
-        $jobList = [];
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $jobList[] = new jobListData($row);
-        }
-        return $jobList;
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return new jobListData($result);
 
     }
 
