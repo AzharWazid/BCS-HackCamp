@@ -14,14 +14,25 @@ class Level
         $query = 'SELECT "UniqueID" FROM "Level"';
         $stmt = $this->dbHandle->query($query);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $result2 = $result["UniqueID"];
+        //$result2 = $result[0];
         //var_dump($skills);
-        if($result2 == 1){
-            var_dump($result2);
+        //var_dump($result2["UniqueID"]);
+//        if($result2["UniqueID"] == 1){
+//            echo "Works ";
+//            //var_dump($result[1]);
+//        }
+
+        //var_dump($result[0]);
+        //$result2 = $result[1];
+        //var_dump($result2["UniqueID"]);
+        $levelArr = [];
+        for ($i = 0; $i < count($result); $i++) {
+            $result2 = $result[$i];
+            if (!in_array($result2["UniqueID"], $levelArr)) {
+                $levelArr[] = $result2["UniqueID"];
+            }
         }
-        var_dump($result);
-
-        return $result;
-
+        //var_dump($levelArr);
+        return $levelArr;
     }
 }

@@ -38,17 +38,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     if (isset($_POST['levels'])) {
         $selectedLevels = $_POST['levels'];
     }
+    //var_dump($selectedLevels);
 
-    if (!isset($_FILES['cv_file'])){
+    if (!isset($_FILES['file_input_name']) || $_FILES['file_input_name']['error'] === UPLOAD_ERR_NO_FILE){
         $_FILES['cv_file'] = null;
     }
-
+    //var_dump($_FILES['cv_file']);
     for($i = 0; $i < count($selectedSkills); $i++)
     {
         $skillKey = array_search($selectedSkills[$i], $skillArr);
         $categoryKey = array_search($selectedCategories[$i], $categoryArr);
-        $levelKey = array_search($selectedLevels[$i], $levelArr);
-        var_dump($levelKey);
+        $levelKey = $levelArr[$selectedLevels[$i]];
+        //var_dump($levelKey);
         $studentInfo->addStudentInfo($userInfoId, $_FILES['cv_file'], $skillKey, $categoryKey, $levelKey);
     }
 }

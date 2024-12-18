@@ -47,10 +47,13 @@ class studentInfoDataSet{
         $stmt = $this->dbHandle->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
+
         return new studentInfoData($stmt->fetch(PDO::FETCH_ASSOC));
     }
 
     public function addStudentInfo($userInfoId, $cv, $skills, $category, $level){
+        // if the cv is null or empty it puts the cvPath as null
+
         if($cv == null || $cv == ''){
             $cvPath = null;
         }

@@ -11,7 +11,7 @@
                 <!-- Skills Dropdown -->
                 <div class="col-md-4">
                     <label for="skills-1" class="form-label">Skills</label>
-                    <select class="form-select" id="skills-1" name="skills[]">
+                    <select class="form-select" id="skills-1" name="skills[]" required>
                         <option value="">Select a skill</option>
                         <option value="Data Management">Data Management</option>
                         <option value="Digital Forensics">Digital Forensics</option>
@@ -29,7 +29,7 @@
                 <!-- Categories Dropdown -->
                 <div class="col-md-4">
                     <label for="categories-1" class="form-label">Category</label>
-                    <select class="form-select" id="categories-1" name="categories[]">
+                    <select class="form-select" id="categories-1" name="categories[]" required>
                         <option value="">Select a category</option>
                         <option value="Computer Science">Computer Science</option>
                         <option value="Business">Business</option>
@@ -42,15 +42,15 @@
                 <!-- Levels Dropdown -->
                 <div class="col-md-4">
                     <label for="levels-1" class="form-label">Level</label>
-                    <select class="form-select" id="levels-1" name="levels[]">
+                    <select class="form-select" id="levels-1" name="levels[]" required>
                         <option value="">Select a level</option>
-                        <option value="Level 1">Level 1</option>
-                        <option value="Level 2">Level 2</option>
-                        <option value="Level 3">Level 3</option>
-                        <option value="Level 4">Level 4</option>
-                        <option value="Level 5">Level 5</option>
-                        <option value="Level 6">Level 6</option>
-                        <option value="Level 7">Level 7</option>
+                        <option value=0>Level 1</option>
+                        <option value=1>Level 2</option>
+                        <option value=2>Level 3</option>
+                        <option value=3>Level 4</option>
+                        <option value=4>Level 5</option>
+                        <option value=5>Level 6</option>
+                        <option value=6>Level 7</option>
                     </select>
                 </div>
             </div>
@@ -126,13 +126,13 @@
                     <label for="levels-${dropdownIndex}" class="form-label">Level</label>
                     <select class="form-select" id="levels-${dropdownIndex}" name="levels[]">
                         <option value="">Select a level</option>
-                        <option value="Level 1">Level 1</option>
-                        <option value="Level 2">Level 2</option>
-                        <option value="Level 3">Level 3</option>
-                        <option value="Level 4">Level 4</option>
-                        <option value="Level 5">Level 5</option>
-                        <option value="Level 6">Level 6</option>
-                        <option value="Level 7">Level 7</option>
+                        <option value=0>Level 1</option>
+                        <option value=1>Level 2</option>
+                        <option value=2>Level 3</option>
+                        <option value=3>Level 4</option>
+                        <option value=4>Level 5</option>
+                        <option value=5>Level 6</option>
+                        <option value=6>Level 7</option>
                     </select>
                 </div>`;
 

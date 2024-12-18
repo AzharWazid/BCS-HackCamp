@@ -3,6 +3,7 @@ class studentInfoData{
     protected $_id, $_userInfoId, $_CV, $_skills, $_category, $_level;
 
     public function __construct($dbRow){
+        var_dump($dbRow);
         $this->_id = $dbRow['UniqueID'];
         $this->_userInfoId = $dbRow['userInfo'];
         $this->_CV = $dbRow['CV'];

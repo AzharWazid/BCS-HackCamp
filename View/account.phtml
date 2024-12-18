@@ -78,7 +78,7 @@
                 <div class="mt-4">
                     <h5>View Your CV</h5>
                     <!-- View CV Button -->
-                    <?php if (isset($view->studentCV)): ?>
+                    <?php if (isset($view->studentCV) || $view->studentCV != null): ?>
                         <div class="mt-3">
                             <a href="<?php echo $view->studentCV ?>" target="_blank" class="btn btn-primary">
                                 View CV
