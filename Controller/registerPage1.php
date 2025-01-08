@@ -31,11 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 
         if($userTypes == "student")
         {
-
+//            $_SESSION['id'] = $userID;
+//            var_dump($_SESSION);
             header("location: registerPage2.php");
         }
         else{
-            header("location: login.php");
+//            $_SESSION['id'] = $userID;
+//            var_dump($_SESSION);
+
+            header("location: ../index.php");
         }
     }
     else
@@ -43,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         echo "Email is already in use";
     }
 }
+
 require("../View/registerPage1.phtml");
 
 //try {

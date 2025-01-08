@@ -6,23 +6,29 @@ require_once("../Model/studentInfoDataSet.php");
 session_start();
 
 $view = new stdClass();
-$userId = $_SESSION['id'];
+if(isset($_SESSION['id'])){
+    $userId = $_SESSION['id'];
+}
 $UserInfoDataSet = new UserInfoDataSet();
 $view->userInfoDataSet = $UserInfoDataSet->getUserInfo($userId);
+if(!isset($_SESSION['id'])){
+    $_SESSION['id'] = $view->userInfoDataSet->getUserID();
+    $userId = $_SESSION['id'];
+}
 $userDataSet = new UserDataSet();
-echo "flag 1";
-if ($_SESSION["userType"] == "2") {
+//echo "flag 1";
+if (isset($_SESSION['userType']) && $_SESSION["userType"] == "2") {
     $studentInfoDataSet = new StudentInfoDataSet();
     if ($studentInfoDataSet->validateStudentInfo($view->userInfoDataSet->getId()) >= 1) {
-        echo "flag 2";
+//        echo "flag 2";
         $view->studentInfoDataSet = $studentInfoDataSet->getStudentInfo($view->userInfoDataSet->getID());
-        echo "flag 3";
+//        echo "flag 3";
     }
     else{
         header("location:registerPage2.php");
     }
 }
-echo "flag 4";
+//echo "flag 4";
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
