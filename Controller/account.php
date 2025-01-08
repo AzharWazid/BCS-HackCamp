@@ -13,10 +13,8 @@ if ($_SESSION["userType"] == "2")
     $studentInfoDataSet = new StudentInfoDataSet();
     echo "flag 3";
     if ($studentInfoDataSet->validateStudentInfo($view->userInfoDataSet->getId()) >= 1){
-        echo "flag 2";
         //var_dump($view->userInfoDataSet);
         $view->studentInfoDataSet = $studentInfoDataSet->getStudentInfo($view->userInfoDataSet->getID());
-        echo "flag 3";
         $view->studentCV = $studentInfoDataSet->getStudentCV($view->userInfoDataSet->getID());
     }
 }
